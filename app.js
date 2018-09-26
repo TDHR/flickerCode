@@ -31,5 +31,5 @@ app.listen('3011',()=> {
     // myRandom(100000,5).then(result=>{
     //     console.log(result)
     // })//随机数
-    console.log('正在监听'+ 3001)
+    console.log('正在监听'+ 3011)
 });
