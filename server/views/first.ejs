@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>newProduct</title>
+</head>
+<body>
+<section class="">
+    <div>
+        <span>产品名称</span>
+        <input type="text" placeholder="请输入产品名称" id="productName">
+    </div>
+    <div>
+        <span>单品数量</span>
+        <input type="number" placeholder="请输入单品总数" id="productNumber">
+    </div>
+    <div>
+        <span>位数</span>
+        <input type="number" placeholder="随机数位数（默认五位）" id="productDigst">
+    </div>
+    <div>
+        <button id="addProduct">添加</button>
+    </div>
+</section>
+<section>
+    <div>
+        二维码展示区域
+    </div>
+    <div id="codeContainer">
+
+    </div>
+</section>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="https://cdn.bootcss.com/lrsjng.jquery-qrcode/0.14.0/jquery-qrcode.min.js"></script>
+<script type="text/javascript">
+    $('#addProduct').click(function () {
+        let name = $('#productName').val();
+        console.log(typeof name)
+        let number = $('#productNumber').val();
+        let digst = $('#productDigst').val();
+        if(!name) {
+            alert('请填写产品名称');
+            return;
+        }
+        if(!number){
+            alert('请填写单品数量');
+            return
+        }
+        if(number>10){
+            alert('测试阶段，最多生成十个单品');
+            return;
+        }
+        $.ajax({
+            method:'POST',
+            url:'/home/add',
+            data:{
+                'name':name,
+                'number':number,
+                'digst':digst
+            },
+            success:function (res) {
+
+                let codeData = res.data;
+                let codeDataLen = res.data.length;
+                for(let i=0;i<codeDataLen;i++){
+                    createCode(codeData[i],i)
+                }
+
+            },
+            error:function (error) {
+                console.log(error);
+            }
+        })
+    })
+    //生成二维码
+    function createCode(message,index) {
+//        let url = 'https://nrc.one/codeT'
+        let url02 = 'https://reitschain.com/co'
+        $('#codeContainer').append("<div id='code"+index+"'></div>")
+        $('#code'+index).text(`${url02}?${message}` )
+        $('#code'+index).qrcode({
+            render:"canvas",
+            width:100,
+            height:100,
+            text:`${url02}?${message}`
+        })
+    }
+</script>
+</body>
+</html>

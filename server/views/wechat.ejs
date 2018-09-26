@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>微信扫一扫</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        body{background: #000;}
+        img{
+            height: 500px;
+            width: 500px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -250px;
+            margin-top: -250px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+<img id="rImg" src="/image/erw/er.jpg"/>
+<script>
+
+    window.onload = newpic();
+    function newpic(){
+
+        var imgList = ['t0165ddcf2c5db0d408.png','er.jpg','er2.jpg'];
+        //获取1到10之间的随机数
+
+        function getRandom(a,b){
+            var random = Math.floor(Math.random()*b+a);
+            return random;
+        }
+        var i = getRandom(0,imgList.length-1);
+        var img = document.getElementById("rImg");
+        img.src= "/image/erw/"+imgList[i]
+    }
+</script>
+</body>
+
+</html>

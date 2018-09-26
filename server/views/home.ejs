@@ -1,0 +1,673 @@
+<!--https://vlz2ub.axshare.com/#g=1&p=index-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>闪码</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+        }
+
+        .lunbo {
+            height: 600px;
+            width: 100%;
+        }
+
+        .lunbo img {
+            width: 100%;
+            height: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #555555;
+            margin-bottom: 40px;
+        }
+
+        .sm-container {
+            width: 895px;
+            overflow: hidden;
+            margin: auto;
+        }
+
+        .sm-section1,
+        .sm-section2,
+        .sm-section3,
+        .sm-section4,
+        .sm-section5,
+        .sm-section6,
+        .sm-section7 {
+            padding: 50px 0;
+            min-width: 895px;
+        }
+
+        .sm-section1 {
+            background: transparent;
+            position: relative;
+            margin-top: -85px;
+        }
+
+        .sm-section1 h1 {
+            color: #2454af;
+        }
+
+        .sm-section1 .rectangle {
+            width: 16%;
+            height: 130px;
+            float: left;
+            background: url(/image/Rectangle2.png) no-repeat;
+            background-size: 100% 100%;
+            color: #fff;
+            text-align: center;
+            margin: 0 2%;
+        }
+
+        .sm-section1 .rectangle span {
+            display: inline-block;
+            margin: 50% 0 0 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+        }
+
+        .sm-section1 h1,
+        .sm-section1 .sm-container {
+            position: relative;
+            z-index: 10;
+        }
+
+        .sm-section1 .sm-top-bg {
+            background: #fff;
+            position: absolute;
+            width: 90%;
+            right: 0;
+            top: 0px;
+            height: 100%;
+            z-index: 1;
+            border-bottom-left-radius: 30px;
+            box-shadow: 2px 2px 11px 0px #b9d5f8;
+        }
+
+        .sm-section2 .sm-container div {
+            background: url(/image/jx.png);
+            background-size: 100% 100%;
+            width: 18%;
+            height: 220px;
+            float: left;
+            margin: 0 1%;
+            color: #fff;
+            text-align: center;
+        }
+
+        .sm-section2 .sm-container div img {
+            width: 70%;
+            margin-top: 10px;
+        }
+
+        .sm-section2 .sm-container div span {
+            display: inline-block;
+            height: 60px;
+            padding: 15px;
+            font-weight: 600;
+        }
+
+        .sm-section3 .bg-blue {
+            background: linear-gradient(#5890e6, #154ecd);
+            height: 420px
+        }
+
+        .sm-section3 .sm-container {
+            height: 100%;
+        }
+
+        .sm-section3 .sm-container div {
+            background: url(/image/dbx.png) no-repeat;
+            background-size: 100% 100%;
+            height: 180px;
+            width: 19%;
+            margin: 3%;
+            float: left;
+            color: #fff;
+        }
+
+        .sm-section3 .sm-container div span:nth-child(1) {
+            display: inline-block;
+            padding: 0 15px;
+            margin-top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+        }
+
+        .sm-section3 .sm-container .mt1 span:nth-child(2) {
+            background: transparent;
+            display: inline-block;
+            margin-top: 50%;
+            padding: 10px;
+            border: 2px solid rgb(43,176,246);
+            box-shadow: -3px 4px 4px #4575ec;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .mt2 {
+            position: relative;
+        }
+
+        .sm-section3 .sm-container .mt2 span:nth-child(2) {
+            background: transparent;
+            padding: 10px;
+            border: 2px solid rgb(43,176,246);
+            box-shadow: -3px 4px 4px #4575ec;
+            border-radius: 5px;
+            margin-top: 0px;
+            z-index: 100;
+            position: absolute;
+            top: -50%;
+            width: 85%;
+            left: 0;
+            display: none;
+        }
+
+        .sm-section3 .sm-container div:hover span:nth-child(2) {
+            display: block;
+        }
+
+        .timeline ul .left_li .ic_events,
+        .timeline ul .right_li .ic_events {
+            border-radius: 16px;
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border: 2px solid #d9ecf0;
+            position: absolute;
+            background: #4f7ef9;
+            margin-left: -8px;
+        }
+
+        .timeline ul .right_li .txt_events {
+            position: absolute;
+            right: 50%;
+        }
+
+        .timeline ul .left_li p,
+        .timeline ul .right_li p {
+            margin: 0;
+            line-height: 22px;
+            padding: 0 20px;
+        }
+
+        .timeline ul .left_li p strong,
+        .timeline ul .right_li p strong {
+            display: inline-block;
+            width: 100%;
+            color: #2e62ea;
+            font-weight: 400!important;
+        }
+
+        .timeline ul .left_li p span,
+        .timeline ul .right_li p span {
+            color: #000;
+            font-size: 12px;
+        }
+
+        .timeline ul .left_li,
+        .timeline ul .right_li {
+            position: relative;
+            list-style: none;
+            min-height: 70px;
+        }
+
+        .timeline ul .right_li .line {
+            height: 100%;
+            border-left: 2px solid #666;
+            position: absolute;
+            left: 50%;
+        }
+
+        .timeline ul .left_li .line {
+            height: 100%;
+            border-right: 2px solid #666;
+            position: absolute;
+        }
+
+        .right_li {
+            height: 60px;
+            padding-right: 50%;
+            text-align: right;
+        }
+
+        .left_li {
+            padding-left: 50%;
+            text-align: left;
+        }
+
+        .sm-section3 {
+            text-align: center;
+        }
+
+        .section4-bgimg{
+            width: 859px;
+            height: auto;
+            margin: auto;
+            margin-bottom: 30px;
+        }
+        .section4-bgimg img{
+            width: 100%;
+        }
+        .sm-section5 img {
+            width: 100%;
+        }
+
+        .sm-section3 .sm-container {
+            height: 320px;
+        }
+
+        .sm-section5 {
+            background: url(/image/qyrz.png);
+            background-size: 100% 100%;
+            color: #fff;
+        }
+
+        .sm-section5 .sm-container div {
+            width: 45%;
+            margin-left: 2%;
+            float: left;
+        }
+
+        .sm-section5 .sm-container div h5 {
+            text-align: center;
+            line-height: 40px;
+            letter-spacing: 5px;
+            font-weight: 400;
+            font-size: 16px;
+        }
+
+        .sm-section5 .sm-container div p {
+            background: url(/image/bg9.png);
+            background-size: 100% 100%;
+            padding: 30px;
+            font-size: 14px;
+            letter-spacing: 4px;
+            line-height: 30px;
+        }
+
+        .sm-section5 button {
+            float: left;
+            background: linear-gradient(#b2d2f3, #3a9eff);
+            color: #fff;
+            padding: 8px 15px;
+            border: 0;
+            font-size: 26px;
+            box-shadow: 0px 2px 3px #258dd7;
+            -webkit-box-shadow: 0px 2px 3px #258dd7;
+            -moz-box-shadow: 0px 2px 3px #258dd7;
+            margin: 10px;
+            border-radius: 6px;
+            margin-left: 50px;
+            margin-top: 100px;
+        }
+
+        .sm-section6 .sm-container{
+            position: relative;
+        }
+        .sm-section6 ul{
+            background: #fafafa;
+        }
+        .sm-section6 ul li {
+            list-style: none;
+            width: 100%;
+            overflow: hidden;
+            width: 50%;
+            font-size: 14px;
+        }
+        .sm-section6 ul li div:nth-child(1) {
+            width: 100%;
+            float: left;
+            background: transparent;
+            height: 30px;
+            line-height: 30px;
+            color: #0b52a2;
+        }
+        .sm-section6 ul li div:nth-child(2) {
+            width: 50%;
+            float: left;
+        }
+
+        .sm-section6 ul li div:nth-child(2) {
+            background: #F5F5F5;
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: none;
+            height: 100%;
+            line-height: 27px;
+            letter-spacing: 3px;
+            padding: 15px;
+            width: 418px;
+        }
+        .sm-section6 ul li:hover div:nth-child(1) {
+            background: #F5F5F5 !important;
+        }
+        .sm-section6 ul li:hover div:nth-child(2) {
+            display: block !important;
+        }
+
+        .sm-section7 {
+            text-align: center;
+            padding-bottom: 100px;
+        }
+
+        .sm-section7 .sm-container div {
+            width: 19%;
+            height: 110px;
+            float: left;
+            margin: 0 3%;
+            color: #fff;
+            text-align: center;
+        }
+
+        .sm-section7 .sm-container div img {
+            width: 100%;
+        }
+
+        .sm-section7 button {
+            margin: auto;
+            background: linear-gradient(#389DF6, #407BFE);
+            color: #fff;
+            padding: 8px 15px;
+            border: 0;
+            font-size: 30px;
+            box-shadow: 0px 2px 3px #6cb4e7;
+            -webkit-box-shadow: 0px 2px 3px #6cb4e7;
+            -moz-box-shadow: 0px 2px 3px #6cb4e7;
+        }
+
+        .footer {
+            height: 150px;
+            color: #fff;
+            font-size: 20px;
+            text-align: center;
+            line-height: 150px;
+            letter-spacing: 2px;
+            background: linear-gradient(#78ADFF, #407BFE);
+        }
+        .footer span{margin: 10px;}
+        .mt2 {
+            margin-top: 110px !important
+        }
+        .sm-big-btn {
+            margin: auto;
+            text-decoration: none;
+            background: linear-gradient(#389DF6, #407BFE);
+            color: #fff;
+            padding: 8px 15px;
+            border: 0;
+            font-size: 30px;
+            border-radius: 4px;
+            box-shadow: 1px 2px 3px #3063eb;
+            letter-spacing: 4px;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="lunbo">
+    <img src="/image/lunbo1.jpg" />
+    <div style="text-align: center;margin-top: -200px;"><a  href="/home/wxss" class="sm-big-btn">微信扫一扫</a></div>
+</div>
+<div class="sm-section1">
+    <div class="sm-top-bg"></div>
+    <!--<h1>实名区块链防伪<br />助力实体企业发展</h1>-->
+    <h1> 闪码平台-构建区块链防伪体系<br/>助力实体企业发展,汇聚全球消费者</h1>
+    <div class="sm-container">
+        <div class="rectangle"><span>为企业提供<br />防伪技术支持</span></div>
+        <div class="rectangle"><span>汇聚企业<br />消费者</span></div>
+        <div class="rectangle"><span>帮助企业<br />管理客户</span></div>
+        <div class="rectangle"><span>为企业提供<br />促销服务</span></div>
+        <div class="rectangle"><span>所有企业共享<br />平台客户资源</span></div>
+    </div>
+</div>
+
+<div class="sm-section2">
+    <h1>闪码的优势</h1>
+    <div class="sm-container">
+        <div>
+					<span>严谨简单<br />
+						用户无门槛,区块链保持严谨</span>
+            <img src="/image/Group1.png" />
+        </div>
+        <div>
+            <span>海量线下流量<br />汇聚成线上流量</span>
+            <img src="/image/Group2.png" />
+        </div>
+        <div>
+            <span>帮助企业彻底解决假货困扰</span>
+            <img src="/image/Group3.png" />
+        </div>
+        <div>
+            <span>价值互联网<br/>将生意变成生态</span>
+            <img src="/image/Group4.png" />
+        </div>
+        <div>
+            <span>巨大的市场<br>强大的扩张能力</span>
+            <img src="/image/Group5.png" />
+        </div>
+    </div>
+</div>
+<div class="sm-section3">
+    <h1>闪码是如何防伪的</h1>
+    <div class="bg-blue">
+        <div class="sm-container">
+            <div class="mt1">
+                <span>企业责任地址发出商品信息</span>
+                <span style="margin-top: 38%;">企业责任地址签发授权信息，任何人不可仿造</span>
+            </div>
+            <div class="mt2">
+                <span>消费者购买商品并扫码查看信息</span>
+                <span>
+							商品信息透明，真正做到防伪
+				 		</span>
+            </div>
+            <div class="mt1">
+                <span>系统重排校验签名</span>
+                <span>
+							每件商品有唯一性，防止伪造
+	 					 </span>
+            </div>
+            <div class="mt2">
+                <span>消费者领取积分奖励</span>
+                <span>
+							建立会员体系，凝聚用户群体
+				 		</span>
+            </div>
+        </div>
+        <div><a  href="/home/wxss" class="sm-big-btn">微信扫一扫</a></div>
+    </div>
+</div>
+<div class="sm-section4">
+    <h1>闪码潜力</h1>
+    <div class="section4-bgimg">
+        <img src="/image/wenzi.png"/>
+    </div>
+    <div class="timeline">
+        <ul>
+            <li class="right_li">
+                <div class="line"></div> <span class="ic_events png"></span>
+                <p class="txt_events"><strong>2020.10前</strong>
+                    <span>
+							    每个超级节点服务3家以上入驻企业，<br />
+					                  每家企业最少防伪100万件商品
+					                  闪码平台用户群体超过1亿
+							</span>
+                </p>
+            </li>
+            <li class="left_li">
+                <div class="line"></div> <span class="ic_events"><i class="png"></i></span>
+                <p class="txt_events">
+                    <strong>2019.10前</strong>
+                    <span>全球80个超级节点招募完成</span>
+                </p>
+            </li>
+            <li class="right_li">
+                <div class="line"></div> <span class="ic_events png"></span>
+                <p class="txt_events">
+                    <strong>2019.04前</strong>
+                    <span> 平台上线，3家以上入驻企业</span>
+                </p>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<h1>超级节点计划</h1>
+<div class="sm-section5">
+
+    <div class="sm-container">
+        <div>
+            <h5>企业的利益</h5>
+            <p>品牌包装，提高产品利润 <br /> 打造企业线上平台，引导用户进一步消费 <br />
+                通过价值互联网整合上下游<br /> 企业通证自由流转，全球获取资源 <br />
+                促销产品,提高产品销量,获得更大利润
+            </p>
+        </div>
+        <div>
+            <h5>我们的服务</h5>
+            <p>帮助企业发行通证，接入防伪平台 <br /> 为企业部署防伪服务器 <br /> 通证持有人社群维护，公共关系管理 <br /> 为企业提供营销策划、募资、流通性等增值服务
+            </p>
+        </div>
+        <!--<button>企业<br />入驻</button>-->
+    </div>
+</div>
+<div class="sm-section6">
+    <h1>闪码防伪Q&A</h1>
+    <div class="sm-container">
+        <ul>
+            <li>
+                <div>Q：什么样的企业需要闪码的服务？ </div>
+                <div style="display: block;">A：拥有品牌，有实体产品在销售的企业，希望能够提高品牌知名度和销量的企业都是闪码的客户。不过考虑到产品的形态，我们前期重点会切入奶粉，酒类，食品，药品，化妆品，等等假货会造成很严重后果的企业。后期逐渐向其他领域铺开。
+                </div>
+            </li>
+            <li>
+                <div>Q：区块链防伪就一定比中心化防伪先进么？ </div>
+                <div>A：区块链防伪从几个层面看，是超越了中心化防伪技术的。 １。产品授权书由企业自行基于所持密钥生成。没有中间过程。 ２。中心化防伪用户参与程度不高。闪码防伪，通过区块链公开账本技术，以及企业积分的释放，让所有群众可以参与，值得参与。一旦参与人数足够多，每一个拿到假货的用户都去找经销商维权，造假者将无利可图。 ３。平台，用户，企业三方全部无法造假。链上数据更真实，更有意义
+
+                </div>
+            </li>
+            <li>
+                <div>Q：区块链防伪项目已经有很多了，你这个有什么不同 </div>
+                <div>A：闪码防伪和传统区块链防伪的核心区别在于主链技术。 闪码是建立在实名制的NRC主链技术上。而传统区块链防伪建立在匿名区块链体系下。 这个区别产生了3个本质上的区别。 逻辑链条不同 传统防伪在匿名区块链体系上，信息无法明确责任人，既无法保障所有信息上链，也无法保障上链信息准确。 闪码防伪，全链条无逻辑缺陷。 用户门槛不同 传统防伪需要为产品植入RFID，用户使用RFID 阅读器。 闪码用手机扫一扫二维码就可以 动力不同 传统防伪无激励机制 闪码平台通过企业积分进行激励
+
+                </div>
+            </li>
+            <li>
+                <div>Q：为什么微信扫一扫企业签发的授权书，可以保证区块链的严谨性 </div>
+                <div>A：闪码的安全构架建立在企业的授权二维码上。 授权二维码是由企业的产品地址私钥签发出来的，包括平台在内，没有任何人能够仿造。领取过程链上公示，保证二维码一次性有效。 二维码包含三样信息：责任地址，产品编号，签名信息。平台帮助用户将产品编号，和签名信息附加在一个指向责任地址的交易包中，通过交易包上链通知责任交易。 虽然交易包是平台代为客户发出的。但是，如果没有二维码签名信息，不会有响应。一次申请过程，没有顾客参与其中的二维码信息，是不可能存在的。
+                </div>
+            </li>
+            <li>
+                <div> Q : 复制防伪二维码有没有可能
+                </div>
+                <div>A：闪码的二维码是一次性的。只要扫过一次，就不再有效。这个唯一性是由链上存证保证的。区块链的私钥签名的不可复制性和区块链本身的可靠性是一致的。 造假者或者购买大量真货，来获取防伪二维码，或者复制同一商品的二维码，希望所有顾客购买以后不去验货。来自于积分的激励，闪码防伪用户参与度要远高于传统的防伪体系。造假者需要去面对所有领不到积分而愤怒的顾客。因此，对于造假者而言，经济利益是不划算的。
+
+                </div>
+            </li>
+            <li>
+                <div>Q：必须用微信扫一扫么 </div>
+                <div>A：并没有。微信扫一扫只是很方便而已。防伪并不是中国一个国家的问题。而是全世界的问题。日本也是假货的受灾国。用微信扫一扫仅仅是使用了二维码扫描器的功能。实际上，支付币，百度等等，都有扫一扫功能。
+
+                </div>
+            </li>
+            <li>
+                <div>Q：搭建闪码防伪系统，企业要完成不少工作吧？ </div>
+                <div>A：闪码平台会为企业开发一整套服务器。可以让企业很简单完成：新产品定义，产品资料链上存证，产品责任地址签发授权书，产品终端销售监控，用户数据挖掘等等。企业要准备一台服务器，以及二维码打印机，这是比较成熟的技术。
+
+                </div>
+            </li>
+            <li>
+                <div>Q：企业除了防伪还能得到什么样的好处 </div>
+                <div>A： １线下流量和线上流量有巨大的价差。 试想一个一年10亿包方便面的企业，和一个一年10亿流量的互联网企业会有多么巨大的区别。当把线下流量拉到线上去以后，通过促销，优惠等等活动，企业和顾客有机互动起来，会创造巨大的利益。 ２通过价值互联网整合企业上下游 帮助顾客防伪，并且分发TOKEN仅仅是整合企业的下游。通过TOKEN公示，质押，则可以整合企业的上游。通过上下游的有机整合，让企业的生意变成生态。创造更大的利益 ３全球资源汇总 通过TOKEN的全球发放，企业可以从全球获得资源。比如，当用户有一定量的token,他可以通过赠送，向朋友推荐这个新产品。通过区块链的全球流动性，可以为企业获得全球的知名度。
+
+                </div>
+            </li>
+            <li>
+                <div>Q：闪码币是干啥的 </div>
+                <div>A：企业节点服务器守护自己的责任地址，当企业的相关地址收到一个闪码币以后，服务启动验真过程，对随交易携带过来的签名信息，以及产品编号进行验证。如果授权合法，服务器会将自己的奖励TOKEN和闪码币一起打回交易发起地址，如果授权不合法，则只退回闪码币。因此，平台会为所有客户分配一个闪码币。由于平台的快速扩张能力，平台会为用户准备６个亿的闪码资产。但是不能提现离开平台。 闪码平台将为所服务的企业发币，并且协助防伪。平台将会收取企业发币总量的3%作为发展基金分布到所有持有闪码币的用户手中。 企业的包装，发行，促销，宣传，等等工作，完全由通过闪码币认证的超级节点机构完成。这个过程中，将会产生巨大的利益。闪码平台通过释放利益，从全球招募超级节点。超级节点的申请，需要向一个公开地址质押２５０万个闪码币。通过这个机制，闪码平台确保全球最多授权８０个超级节点。
+
+                </div>
+            </li>
+            <li>
+                <div>Q：闪码币的市场有多大 </div>
+                <div>A：全球共有1700万个注册商标，有实际生产行为的企业，有900万家以上。通过品牌的搭建，凝聚社区，提高企业的知名度和利润率是企业的巨大需求。
+
+                </div>
+            </li>
+            <li>
+                <div>Q：我是企业主，应该怎么办？ </div>
+                <div>A：闪码已经和链未来（北京）科技有限公司签约成为第一个超级节点。业务相关工作请咨询他们
+
+                </div>
+            </li>
+            <li>
+                <div>Q：什么样的机构，有可能成为超级节点？ </div>
+                <div>A：链未来是闪码平台的第一个超级节点。所有的服务，都是在摸索。并没有一定之规。我们欢迎致力于品牌宣传，电商销售，市场营销，策划，投行，券商，等等领域的机构，可以优先成为闪码平台的超级节点
+
+                </div>
+            </li>
+            <li>
+                <div>Q：成为超级节点质押的闪码币，还会归还么？ </div>
+                <div>A：超级节点有效期２年。两年内，不可以提出申请。超过两年，可以续约。如果不提出续约申请，闪码平台会将所质押的闪码币原路打回。
+
+                </div>
+            </li>
+            <li>
+                <div>Q：闪码平台如何扩张 </div>
+                <div>A：线下流量比线上流量要大很多倍。任何一个生产型企业年销售一百万件产品是很容易的。通过顾客获取企业积分的激励，预计可以将一半左右的用户引导到平台。 当平台体系搭建好以后，通过全球80个超级节点的释放，我们希望每一个节点每年为平台导入３个当地企业。每一个企业按照年销量100万件计算，平台在２年内，可以引入80x3x100x50%　接近1亿用户。
+
+                </div>
+            </li>
+            <li>
+                <div>Q：平台如何盈利 </div>
+                <div>A：企业的顾客进行分流，大部分用户获得企业TOKEN，都会通过打折，优惠，等等活动把token消耗掉。在平台通过TOKEN的活动获得打折优惠的顾客，还需要通过平台补足余额。在充值，促销的过程，平台会获得收入。 另外，由于平台汇聚了大量的顾客，因此广告费也将成为不菲的收入
+
+                </div>
+            </li>
+            <li>
+                <div>Q：闪码币如何发行
+                </div>
+                <div>A：闪码币总发行量10亿枚。其中，回馈投资人２亿枚。团队，运营共2亿枚。分５年释放。平台消耗掉６亿枚永不释放。基石轮募资释放5000万枚。基石轮募资完成后，立刻上市。预计半年内，平台搭建完成。
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="sm-section7">
+    <h1>合作伙伴</h1>
+    <div class="sm-container">
+        <div><img src="/image/logo1.png" /></div>
+        <div><img src="/image/logo2.png" /></div>
+        <div><img src="/image/logo3.png" /></div>
+        <div><img src="/image/logo4.png" /></div>
+    </div>
+    <!--<div><button>留下您的联系方式</button></div>-->
+</div>
+<!--<div class="sm-section7">
+    <h1>关注我们</h1>
+</div>-->
+<div class="footer">
+			<span>
+				联系电话:010-52857497
+			</span>
+    <span>
+				企业邮箱:h@nrcone.com
+			</span>
+</div>
+</body>
+
+</html>
