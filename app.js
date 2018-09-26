@@ -26,7 +26,7 @@ app.use(view(path.join(__dirname,'./server/views'),{
 app.use(static(__dirname + '/static'));
 app.use(routers.routes())
     .use(routers.allowedMethods());
-app.listen('3001',()=> {
+app.listen('3011',()=> {
     // console.log(myCipher("{'adf':打发第三方}"));//加密
     // myRandom(100000,5).then(result=>{
     //     console.log(result)
