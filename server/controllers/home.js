@@ -10,7 +10,7 @@ let isMatch;
 exports.index = async (ctx) => {
     const test = 'test';
     await ctx.render('home',{
-        test
+
     })
 };
 exports.wechat = async (ctx) => {
@@ -19,6 +19,11 @@ exports.wechat = async (ctx) => {
 
     })
 };
+exports.cjdjh = async (ctx) => {
+    await ctx.render('cjdjh',{
+
+    })
+}
 // exports.first = async (ctx, next) => {
 //
 //     const id = ctx.params.id;

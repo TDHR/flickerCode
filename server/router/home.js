@@ -8,6 +8,7 @@ const home = require('../controllers/home');
 // };
 router .get('/',home.index);
 router .get('home/wxss',home.wechat);
+router .get ('home/cjdjh',home.cjdjh);
 //跳转到添加产品的页面
 // router .get('home/add',home.first);
 // // router .post('home/second',home.second);

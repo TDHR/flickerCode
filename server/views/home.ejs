@@ -15,16 +15,6 @@
             font-family: "微软雅黑";
         }
 
-        .lunbo {
-            height: 600px;
-            width: 100%;
-        }
-
-        .lunbo img {
-            width: 100%;
-            height: 100%;
-        }
-
         h1 {
             text-align: center;
             color: #555555;
@@ -32,7 +22,7 @@
         }
 
         .sm-container {
-            width: 895px;
+            max-width: 895px;
             overflow: hidden;
             margin: auto;
         }
@@ -45,7 +35,6 @@
         .sm-section6,
         .sm-section7 {
             padding: 50px 0;
-            min-width: 895px;
         }
 
         .sm-section1 {
@@ -58,22 +47,75 @@
             color: #2454af;
         }
 
-        .sm-section1 .rectangle {
-            width: 16%;
-            height: 130px;
-            float: left;
-            background: url(/image/Rectangle2.png) no-repeat;
-            background-size: 100% 100%;
+        .sm-section1 .sm-container {
             color: #fff;
+            font-size: 28px;
+        }
+
+        .sm-section1 .rectangle {
+            width: 33%;
+            float: left;
+            color: #555;
+            font-size: 15px;
+        }
+
+        .sm-section1 .rectangle:nth-child(1) {
             text-align: center;
-            margin: 0 2%;
+        }
+
+        .sm-section1 .rectangle:nth-child(2) {
+            text-align: center;
+        }
+
+        .sm-section1 .rectangle:nth-child(3) {
+            text-align: center;
+        }
+
+        @media only screen and (max-width:768px) {
+            .sm-section1 .sm-container {
+                margin-left: 10%;
+            }
+            .footer {
+                line-height: 25px;
+                padding-top: 20px;
+            }
+            .ifBr {
+                display: block;
+            }
+            .sm-section7 .sm-container div {
+                width: 50%;
+                float: left;
+                color: #fff;
+                text-align: center;
+            }
+        }
+
+        @media only screen and (min-width:768px) {
+            .footer {
+                line-height: 150px;
+            }
+            .ifBr {
+                display: none;
+            }
+            .sm-section7 .sm-container div {
+                width: 19%;
+                /* height: 110px; */
+                float: left;
+                margin: 0 3%;
+                color: #fff;
+                text-align: center;
+            }
         }
 
         .sm-section1 .rectangle span {
-            display: inline-block;
-            margin: 50% 0 0 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
+            line-height: 35px;
+            letter-spacing: 3px;
+            display: block;
+        }
+
+        .rectangle img {
+            width: 60%;
+            margin: auto;
         }
 
         .sm-section1 h1,
@@ -97,10 +139,9 @@
         .sm-section2 .sm-container div {
             background: url(/image/jx.png);
             background-size: 100% 100%;
-            width: 18%;
-            height: 220px;
+            width: 28%;
             float: left;
-            margin: 0 1%;
+            margin: 0 2.5%;
             color: #fff;
             text-align: center;
         }
@@ -108,74 +149,124 @@
         .sm-section2 .sm-container div img {
             width: 70%;
             margin-top: 10px;
+            /*height: 165px;*/
         }
 
         .sm-section2 .sm-container div span {
             display: inline-block;
             height: 60px;
             padding: 15px;
-            font-weight: 600;
+            /*font-weight: 600;*/
+        }
+
+        .sm-section3 {
+            text-align: center;
         }
 
         .sm-section3 .bg-blue {
             background: linear-gradient(#5890e6, #154ecd);
-            height: 420px
-        }
-
-        .sm-section3 .sm-container {
-            height: 100%;
-        }
-
-        .sm-section3 .sm-container div {
-            background: url(/image/dbx.png) no-repeat;
-            background-size: 100% 100%;
-            height: 180px;
-            width: 19%;
-            margin: 3%;
-            float: left;
-            color: #fff;
-        }
-
-        .sm-section3 .sm-container div span:nth-child(1) {
-            display: inline-block;
-            padding: 0 15px;
-            margin-top: 50%;
-            transform: translateY(-50%);
-            text-align: center;
-        }
-
-        .sm-section3 .sm-container .mt1 span:nth-child(2) {
-            background: transparent;
-            display: inline-block;
-            margin-top: 50%;
-            padding: 10px;
-            border: 2px solid rgb(43,176,246);
-            box-shadow: -3px 4px 4px #4575ec;
-            border-radius: 5px;
-            display: none;
-        }
-
-        .mt2 {
             position: relative;
         }
 
-        .sm-section3 .sm-container .mt2 span:nth-child(2) {
-            background: transparent;
-            padding: 10px;
-            border: 2px solid rgb(43,176,246);
-            box-shadow: -3px 4px 4px #4575ec;
-            border-radius: 5px;
-            margin-top: 0px;
-            z-index: 100;
-            position: absolute;
-            top: -50%;
-            width: 85%;
-            left: 0;
-            display: none;
+        @media only screen and (min-width:768px) {
+            .sm-section3 .sm-container {
+                height: 100%;
+                padding-bottom: 100px;
+            }
+            .sm-section3 .sm-container div {
+                background: url(/image/dbx.png) no-repeat;
+                background-size: 100% 100%;
+                height: 180px;
+                width: 19%;
+                margin: 3%;
+                float: left;
+                color: #fff;
+            }
+            .sm-section3 .sm-container div span:nth-child(1) {
+                display: inline-block;
+                padding: 0 15px;
+                margin-top: 50%;
+                transform: translateY(-50%);
+                text-align: center;
+            }
+            .sm-section3 .sm-container .mt1 span:nth-child(2) {
+                background: transparent;
+                display: inline-block;
+                margin-top: 50%;
+                padding: 10px;
+                border: 2px solid rgb(43, 176, 246);
+                box-shadow: -3px 4px 4px #4575ec;
+                border-radius: 5px;
+                display: none;
+            }
+            .mt2 {
+                position: relative;
+            }
+            .sm-section3 .sm-container .mt2 span:nth-child(2) {
+                background: transparent;
+                padding: 10px;
+                border: 2px solid rgb(43, 176, 246);
+                box-shadow: -3px 4px 4px #4575ec;
+                border-radius: 5px;
+                margin-top: 0px;
+                z-index: 100;
+                position: absolute;
+                top: -50%;
+                width: 85%;
+                left: 0;
+                display: none;
+            }
+            .sm-section3 .sm-container div:hover span:nth-child(2) {
+                display: block;
+            }
+            .top38 {
+                margin-top: 38%;
+            }
+            .mt2 {
+                margin-top: 110px !important
+            }
         }
 
-        .sm-section3 .sm-container div:hover span:nth-child(2) {
-            display: block;
+        @media only screen and (max-width:768px) {
+            .sm-section3 .sm-container {
+                height: 100%;
+                padding-bottom: 200px;
+            }
+            .sm-section3 .sm-container div {
+                position: relative;
+                background: url(/image/dbx.png) no-repeat;
+                background-size: 100% 100%;
+                width: 36%;
+                /*margin: 50px 14%;*/
+                color: #fff;
+            }
+            .bg-blue .mt1:nth-child(1) {
+                margin-top: 30px;
+            }
+            .mt1 {
+                margin-left: 13%;
+            }
+            .mt2 {
+                margin-left: 51%;
+            }
+            .sm-section3 .sm-container div span:nth-child(1) {
+                display: inline-block;
+                width: 60%;
+                line-height: 22px;
+                padding: 30% 0;
+            }
+            .sm-section3 .sm-container div span:nth-child(2) {
+                position: absolute;
+                width: 100%;
+                left: 0;
+                top: 100%;
+                font-size: 14px;
+                color: #ced7e8;
+                text-shadow: 0px 1px 8px #f1f1f1;
+            }
+            .sm-section3 .sm-container div:hover span:nth-child(2) {
+                display: block;
+            }
         }
 
         .timeline ul .left_li .ic_events,
@@ -247,25 +338,72 @@
             text-align: left;
         }
 
-        .sm-section3 {
-            text-align: center;
+        .sm-section4 ul {
+            list-style: none;
+            /*text-align: center;*/
         }
 
-        .section4-bgimg{
+        .sm-section4 strong {
+            font-size: 20px;
+            color: #4f7ef9;
+            margin: 10px;
+        }
+
+        .sm-section4 .sm-se4 li {
+            line-height: 30px;
+        }
+
+        .sm-section4 h3 {
+            color: #555555;
+            margin: 15px;
+        }
+
+        .sm-section4 .sm-se4 ul:nth-child(1) {
+            color: #4069c3;
+        }
+
+        .sm-section4 .sm-se4 ul:nth-child(2) {
+            /*color: #cb2113;*/
+            color: #4069c3;
+        }
+
+        .sm-section4 .sm-se4 ul:nth-child(3) {
+            /*color: #009688;*/
+            color: #4069c3;
+        }
+
+        .section4-bgimg {
             width: 859px;
             height: auto;
             margin: auto;
             margin-bottom: 30px;
         }
-        .section4-bgimg img{
-            width: 100%;
-        }
-        .sm-section5 img {
+
+        .section4-bgimg img {
             width: 100%;
         }
 
-        .sm-section3 .sm-container {
-            height: 320px;
+        @media only screen and (min-width:768px) {
+            .sm-section4 .sm-se4 {
+                width: 50%;
+                float: left;
+                text-align: center;
+            }
+            .sm-section4 .timeline {
+                width: 50%;
+                float: left;
+            }
+        }
+
+        @media only screen and (max-width:768px) {
+            .sm-section4 .sm-se4 {
+                text-align: center;
+            }
+            .sm-section4 .timeline {}
+        }
+
+        .sm-section5 img {
+            width: 100%;
         }
 
         .sm-section5 {
@@ -275,9 +413,8 @@
         }
 
         .sm-section5 .sm-container div {
-            width: 45%;
-            margin-left: 2%;
-            float: left;
+            width: 90%;
+            margin: 0 5% 10px 5%;
         }
 
         .sm-section5 .sm-container div h5 {
@@ -289,16 +426,16 @@
         }
 
         .sm-section5 .sm-container div p {
-            background: url(/image/bg9.png);
+            background: url(image/bg9.png);
             background-size: 100% 100%;
-            padding: 30px;
+            padding: 20px;
             font-size: 14px;
             letter-spacing: 4px;
-            line-height: 30px;
+            text-align: center;
         }
 
-        .sm-section5 button {
-            float: left;
+        .sm-section5 a {
+            text-decoration: none;
             background: linear-gradient(#b2d2f3, #3a9eff);
             color: #fff;
             padding: 8px 15px;
@@ -307,69 +444,102 @@
             box-shadow: 0px 2px 3px #258dd7;
             -webkit-box-shadow: 0px 2px 3px #258dd7;
             -moz-box-shadow: 0px 2px 3px #258dd7;
-            margin: 10px;
             border-radius: 6px;
-            margin-left: 50px;
-            margin-top: 100px;
         }
 
-        .sm-section6 .sm-container{
-            position: relative;
-        }
-        .sm-section6 ul{
-            background: #fafafa;
-        }
-        .sm-section6 ul li {
-            list-style: none;
-            width: 100%;
-            overflow: hidden;
-            width: 50%;
-            font-size: 14px;
-        }
-        .sm-section6 ul li div:nth-child(1) {
-            width: 100%;
-            float: left;
-            background: transparent;
-            height: 30px;
-            line-height: 30px;
-            color: #0b52a2;
-        }
-        .sm-section6 ul li div:nth-child(2) {
-            width: 50%;
-            float: left;
+        @media only screen and (min-width:768px) {
+            .sm-section6 .sm-container {
+                position: relative;
+            }
+            .sm-section6 ul {
+                background: #fafafa;
+            }
+            .sm-section6 ul li {
+                list-style: none;
+                overflow: hidden;
+                width: 50%;
+                font-size: 14px;
+            }
+            .sm-section6 ul li div:nth-child(1) {
+                width: 100%;
+                float: left;
+                background: transparent;
+                height: 30px;
+                line-height: 30px;
+                color: #0b52a2;
+            }
+            .sm-section6 ul li div:nth-child(2) {
+                width: 50%;
+                float: left;
+            }
+            .sm-section6 ul li div:nth-child(2) {
+                background: #F5F5F5;
+                position: absolute;
+                right: 0;
+                top: 0;
+                display: none;
+                height: 100%;
+                line-height: 27px;
+                letter-spacing: 3px;
+                padding: 15px;
+                width: 418px;
+            }
+            .sm-section6 ul li:hover div:nth-child(1) {
+                background: #F5F5F5 !important;
+            }
+            .sm-section6 ul li:hover div:nth-child(2) {
+                display: block !important;
+            }
+            .block {
+                display: block !important;
+            }
         }
 
-        .sm-section6 ul li div:nth-child(2) {
-            background: #F5F5F5;
-            position: absolute;
-            right: 0;
-            top: 0;
-            display: none;
-            height: 100%;
-            line-height: 27px;
-            letter-spacing: 3px;
-            padding: 15px;
-            width: 418px;
-        }
-        .sm-section6 ul li:hover div:nth-child(1) {
-            background: #F5F5F5 !important;
-        }
-        .sm-section6 ul li:hover div:nth-child(2) {
-            display: block !important;
+        @media only screen and (max-width:768px) {
+            .sm-section6 .sm-container {
+                position: relative;
+            }
+            .sm-section6 ul {
+                background: #fafafa;
+            }
+            .sm-section6 ul li {
+                list-style: none;
+                width: 100%;
+                /*overflow: hidden;*/
+                font-size: 14px;
+            }
+            .sm-section6 ul li div:nth-child(1) {
+                width: 100%;
+                padding-left: 15px;
+                background: transparent;
+                /*height: 30px;*/
+                line-height: 30px;
+                color: #0b52a2;
+            }
+            .sm-section6 ul li div:nth-child(2) {
+                background: #F5F5F5;
+                /*position: absolute;*/
+                /*right: 0;
+                top: 0;*/
+                display: none;
+                line-height: 27px;
+                letter-spacing: 3px;
+                padding: 15px;
+            }
+            .sm-section6 ul li:hover div:nth-child(1) {
+                background: #F5F5F5 !important;
+            }
+            .sm-section6 ul li:hover div:nth-child(2) {
+                display: block !important;
+            }
+            .block {
+                display: none;
+            }
         }
 
         .sm-section7 {
             text-align: center;
             padding-bottom: 100px;
-        }
-
-        .sm-section7 .sm-container div {
-            width: 19%;
-            height: 110px;
-            float: left;
-            margin: 0 3%;
-            color: #fff;
-            text-align: center;
         }
 
         .sm-section7 .sm-container div img {
@@ -393,14 +563,17 @@
             color: #fff;
             font-size: 20px;
             text-align: center;
-            line-height: 150px;
             letter-spacing: 2px;
             background: linear-gradient(#78ADFF, #407BFE);
         }
-        .footer span{margin: 10px;}
-        .mt2 {
-            margin-top: 110px !important
+
+        .btn-div {
+            position: absolute;
+            text-align: center;
+            bottom: 30px;
+            width: 100%;
         }
+
         .sm-big-btn {
             margin: auto;
             text-decoration: none;
@@ -414,144 +587,204 @@
             letter-spacing: 4px;
         }
 
+        #lunbo {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        #lunbo ul {
+            /*				display: inline-block;*/
+            height: 100%;
+        }
+
+        #lunbo li {
+            height: 100%;
+            float: left;
+        }
+
+        #lunbo img {
+            width: 100%;
+            height: 100%;
+        }
+        /*#lunbo li img:hover{width:300px;height: 100%;}*/
+        /*#lunbo li img{
+            transition: width 5s linear 2s;
+        }*/
     </style>
 </head>
 
 <body>
 <div class="lunbo">
-    <img src="/image/lunbo1.jpg" />
-    <div style="text-align: center;margin-top: -200px;"><a  href="/home/wxss" class="sm-big-btn">微信扫一扫</a></div>
+    <div class="side" id="lunbo">
+        <ul>
+            <li><img src="/image/lunbo/lunbo3.jpg "></li>
+            <li><img src="/image/lunbo/lunbo1.jpg "></li>
+            <li><img src="/image/lunbo/lunbo2.jpg "></li>
+            <li><img src="/image/lunbo/lunbo3.jpg "></li>
+            <li><img src="/image/lunbo/lunbo1.jpg "></li>
+        </ul>
+    </div>
+
+    <!--<div style="text-align: center;margin-top: -200px; "><a target="_blank " href="wxss.html " class="sm-big-btn ">微信扫一扫</a></div>-->
 </div>
-<div class="sm-section1">
-    <div class="sm-top-bg"></div>
+<div class="sm-section1 ">
+    <div class="sm-top-bg "></div>
     <!--<h1>实名区块链防伪<br />助力实体企业发展</h1>-->
-    <h1> 闪码平台-构建区块链防伪体系<br/>助力实体企业发展,汇聚全球消费者</h1>
-    <div class="sm-container">
-        <div class="rectangle"><span>为企业提供<br />防伪技术支持</span></div>
-        <div class="rectangle"><span>汇聚企业<br />消费者</span></div>
-        <div class="rectangle"><span>帮助企业<br />管理客户</span></div>
-        <div class="rectangle"><span>为企业提供<br />促销服务</span></div>
-        <div class="rectangle"><span>所有企业共享<br />平台客户资源</span></div>
+    <h1> 一步防伪  </h1>
+    <div class="sm-container ">
+        <div class="rectangle ">
+            <img src="image/wx.png" />
+            <span>微信扫一扫</span>
+        </div>
+        <div class="rectangle">
+            <img src="image/jiantou.jpg" />
+            <span>买真货领积分</span>
+        </div>
+        <div class="rectangle ">
+            <img src="image/jf.png" />
+            <span>获得企业积分</span>
+        </div>
     </div>
 </div>
 
-<div class="sm-section2">
+<div class="sm-section2 ">
     <h1>闪码的优势</h1>
-    <div class="sm-container">
+    <div class="sm-container ">
         <div>
-					<span>严谨简单<br />
-						用户无门槛,区块链保持严谨</span>
-            <img src="/image/Group1.png" />
+            <span><strong>简单无门槛</strong> <br />无需App <br />只要扫一扫</span>
+            <img src="/image/Group1.png " />
         </div>
         <div>
-            <span>海量线下流量<br />汇聚成线上流量</span>
-            <img src="/image/Group2.png" />
+            <span><strong>强大动力</strong><br />验真伪<br />送积分</span>
+            <img src="/image/Group2.png " />
         </div>
         <div>
-            <span>帮助企业彻底解决假货困扰</span>
-            <img src="/image/Group3.png" />
-        </div>
-        <div>
-            <span>价值互联网<br/>将生意变成生态</span>
-            <img src="/image/Group4.png" />
-        </div>
-        <div>
-            <span>巨大的市场<br>强大的扩张能力</span>
-            <img src="/image/Group5.png" />
+            <span><strong>安全可靠</strong><br/>区块链存证<br />让假货无可乘之机</span>
+            <img src="/image/Group3.png " />
         </div>
     </div>
 </div>
-<div class="sm-section3">
-    <h1>闪码是如何防伪的</h1>
+<div class="sm-section3 ">
+    <h1>链上结构</h1>
     <div class="bg-blue">
-        <div class="sm-container">
-            <div class="mt1">
-                <span>企业责任地址发出商品信息</span>
-                <span style="margin-top: 38%;">企业责任地址签发授权信息，任何人不可仿造</span>
+        <div class="sm-container ">
+            <div class="mt1 ">
+                <span>企业责任地址签发授权二维码</span>
+                <span class="top38"> 私钥签发授权书，任何人无法仿造 </span>
             </div>
-            <div class="mt2">
-                <span>消费者购买商品并扫码查看信息</span>
-                <span>
-							商品信息透明，真正做到防伪
-				 		</span>
+            <div class="mt2 ">
+                <span>消费者委托闪码平台进行验证</span>
+                <span>消费者将二维码上的授权书信息以交易形式通知责任地址</span>
+
             </div>
-            <div class="mt1">
-                <span>系统重排校验签名</span>
+            <div class="mt1 ">
+                <span>链上排重签名校验</span>
                 <span>
-							每件商品有唯一性，防止伪造
+							检查该产品编号是否第一次上链，
+							检查签名信息是否正确无误
 	 					 </span>
             </div>
-            <div class="mt2">
-                <span>消费者领取积分奖励</span>
+            <div class="mt2 ">
+                <span>通过交易返还验真结果</span>
                 <span>
-							建立会员体系，凝聚用户群体
+							责任地址上发起地址返回一个交易，
+							携带积分即为真货
 				 		</span>
             </div>
         </div>
-        <div><a  href="/home/wxss" class="sm-big-btn">微信扫一扫</a></div>
+        <div class="btn-div">
+            <a target="_blank " href="/home/wxss" class="sm-big-btn">微信扫一扫</a>
+        </div>
     </div>
 </div>
-<div class="sm-section4">
-    <h1>闪码潜力</h1>
-    <div class="section4-bgimg">
-        <img src="/image/wenzi.png"/>
-    </div>
-    <div class="timeline">
+<div class="sm-section4 ">
+    <!--<h1>广阔蓝海</h1>-->
+    <div class="sm-se4 ">
         <ul>
-            <li class="right_li">
-                <div class="line"></div> <span class="ic_events png"></span>
-                <p class="txt_events"><strong>2020.10前</strong>
-                    <span>
-							    每个超级节点服务3家以上入驻企业，<br />
-					                  每家企业最少防伪100万件商品
-					                  闪码平台用户群体超过1亿
-							</span>
-                </p>
-            </li>
-            <li class="left_li">
-                <div class="line"></div> <span class="ic_events"><i class="png"></i></span>
-                <p class="txt_events">
-                    <strong>2019.10前</strong>
-                    <span>全球80个超级节点招募完成</span>
-                </p>
-            </li>
-            <li class="right_li">
-                <div class="line"></div> <span class="ic_events png"></span>
-                <p class="txt_events">
-                    <strong>2019.04前</strong>
-                    <span> 平台上线，3家以上入驻企业</span>
-                </p>
-            </li>
+            <li>
+                <h3>市场现状</h3></li>
+            <li><strong>40%</strong>假货充斥市场</li>
+        </ul>
+        <ul>
+            <li>
+                <h3>广阔蓝海</h3></li>
+            <li><strong>1700</strong>万注册商标</li>
+            <li><strong>900</strong>万家有产品生产行为的企业</li>
+        </ul>
 
+        <ul>
+            <li>
+                <h3>闪码迎接新时代</h3></li>
+            <li>实体流量引入线上</li>
+            <li>由一次性消费变成利益共同体</li>
+            <li>帮助企业链改，拥抱价值互联网，迎接新时代</li>
+        </ul>
+    </div>
+
+    <!--<div class="section4-bgimg ">
+        <img src="/image/wenzi.png "/>
+    </div>-->
+    <div class="timeline ">
+        <h3 style="text-align: center; ">路线图</h3>
+        <ul>
+            <li class="right_li ">
+                <div class="line "></div>
+                <span class="ic_events png "></span>
+                <p class="txt_events ">
+                    <strong>2019.02</strong>
+                    <span>平台完成</span>
+                </p>
+            </li>
+            <li class="left_li ">
+                <div class="line "></div> <span class="ic_events "><i class="png "></i></span>
+                <p class="txt_events ">
+                    <strong>2019.06</strong>
+                    <span>平台超百万用户</span>
+                </p>
+            </li>
+            <li class="right_li ">
+                <div class="line "></div> <span class="ic_events png "></span>
+                <p class="txt_events ">
+                    <strong>2019.10</strong>
+                    <span> 全球80个超级节点部署</span>
+                </p>
+            </li>
+            <li class="left_li ">
+                <div class="line "></div> <span class="ic_events "><i class="png "></i></span>
+                <p class="txt_events ">
+                    <strong>2020.10</strong>
+                    <span>平台用户量过亿</span>
+                </p>
+            </li>
         </ul>
     </div>
 </div>
-<h1>超级节点计划</h1>
-<div class="sm-section5">
 
-    <div class="sm-container">
+<h1 style=" clear: both; text-align: center; padding-top: 100px; ">超级节点计划</h1>
+<div class="sm-section5 ">
+
+    <div class="sm-container ">
         <div>
-            <h5>企业的利益</h5>
-            <p>品牌包装，提高产品利润 <br /> 打造企业线上平台，引导用户进一步消费 <br />
-                通过价值互联网整合上下游<br /> 企业通证自由流转，全球获取资源 <br />
-                促销产品,提高产品销量,获得更大利润
-            </p>
+            <p>通过利益分享共创繁荣 </p>
         </div>
         <div>
-            <h5>我们的服务</h5>
-            <p>帮助企业发行通证，接入防伪平台 <br /> 为企业部署防伪服务器 <br /> 通证持有人社群维护，公共关系管理 <br /> 为企业提供营销策划、募资、流通性等增值服务
-            </p>
+            <p> 由总闪码发行量确定超级节点上限</p>
         </div>
-        <!--<button>企业<br />入驻</button>-->
+        <div>
+            <p> 平台通过超级节点引入实体企业</p>
+        </div>
+        <div style="text-align: center;padding-top: 10px; ">
+            <a target="_blank" href="/home/cjdjh">详情点击</a>
+        </div>
     </div>
 </div>
-<div class="sm-section6">
+<div class="sm-section6 ">
     <h1>闪码防伪Q&A</h1>
-    <div class="sm-container">
+    <div class="sm-container ">
         <ul>
             <li>
                 <div>Q：什么样的企业需要闪码的服务？ </div>
-                <div style="display: block;">A：拥有品牌，有实体产品在销售的企业，希望能够提高品牌知名度和销量的企业都是闪码的客户。不过考虑到产品的形态，我们前期重点会切入奶粉，酒类，食品，药品，化妆品，等等假货会造成很严重后果的企业。后期逐渐向其他领域铺开。
+                <div class="block">A：拥有品牌，有实体产品在销售的企业，希望能够提高品牌知名度和销量的企业都是闪码的客户。不过考虑到产品的形态，我们前期重点会切入奶粉，酒类，食品，药品，化妆品，等等假货会造成很严重后果的企业。后期逐渐向其他领域铺开。
                 </div>
             </li>
             <li>
@@ -647,27 +880,42 @@
         </ul>
     </div>
 </div>
-<div class="sm-section7">
+<div class="sm-section7 ">
     <h1>合作伙伴</h1>
-    <div class="sm-container">
-        <div><img src="/image/logo1.png" /></div>
-        <div><img src="/image/logo2.png" /></div>
-        <div><img src="/image/logo3.png" /></div>
-        <div><img src="/image/logo4.png" /></div>
+    <div class="sm-container ">
+        <div><img src="/image/logo1.png " /></div>
+        <div><img src="/image/logo2.png " /></div>
+        <div><img src="/image/logo3.png " /></div>
+        <div><img src="/image/logo4.png " /></div>
     </div>
     <!--<div><button>留下您的联系方式</button></div>-->
 </div>
-<!--<div class="sm-section7">
+<!--<div class="sm-section7 ">
     <h1>关注我们</h1>
 </div>-->
-<div class="footer">
-			<span>
-				联系电话:010-52857497
-			</span>
-    <span>
-				企业邮箱:h@nrcone.com
-			</span>
+<div class="footer ">
+    联系电话:010-52857497&nbsp;&nbsp;&nbsp;&nbsp;
+    <br class="ifBr" />企业邮箱:h@nrcone.com
+
 </div>
+<script>
+    var li = document.getElementById('lunbo').getElementsByTagName("li");
+    var ul = document.getElementById('lunbo').getElementsByTagName("ul")[0];
+    //
+    var clientWidth = document.body.clientWidth;
+    ul.style.marginLeft = "0px";
+    ul.style.width = clientWidth * 5 + 'px';
+    for(var i = 0; i < 5; i++) {
+        li[i].style.width = clientWidth + "px";
+    }
+    setInterval(function() {
+        ul.style.marginLeft = parseInt(ul.style.marginLeft) - clientWidth + "px";
+
+        if(parseInt(ul.style.marginLeft) <= -clientWidth * 3) {
+            ul.style.marginLeft = "0px"
+        }
+    }, 2500);
+</script>
 </body>
 
 </html>
