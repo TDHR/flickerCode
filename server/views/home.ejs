@@ -36,13 +36,41 @@
         .sm-section7 {
             padding: 50px 0;
         }
-
-        .sm-section1 {
-            background: transparent;
-            position: relative;
-            margin-top: -85px;
+        @media only screen and (min-width:768px) {
+            .sm-section1 {
+                background: transparent;
+                position: relative;
+                margin-top: -85px;
+            }
+            .sm-section1 .sm-top-bg {
+                background: #fff;
+                position: absolute;
+                width: 90%;
+                right: 0;
+                top: 0px;
+                height: 100%;
+                z-index: 1;
+                border-bottom-left-radius: 30px;
+                box-shadow: 2px 2px 11px 0px #b9d5f8;
+            }
         }
-
+        @media only screen and (max-width:768px) {
+            .sm-section1 {
+                background: transparent;
+                position: relative;
+            }
+            .sm-section1 .sm-top-bg {
+                background: #fff;
+                position: absolute;
+                width: 100%;
+                right: 0;
+                top: 0px;
+                height: 100%;
+                z-index: 1;
+                box-shadow: 0px -1px 6px 0px #b9d5f8;
+            }
+            .side{height: 220px;}
+        }
         .sm-section1 h1 {
             color: #2454af;
         }
@@ -72,9 +100,7 @@
         }
 
         @media only screen and (max-width:768px) {
-            .sm-section1 .sm-container {
-                margin-left: 10%;
-            }
+
             .footer {
                 line-height: 25px;
                 padding-top: 20px;
@@ -109,7 +135,6 @@
 
         .sm-section1 .rectangle span {
             line-height: 35px;
-            letter-spacing: 3px;
             display: block;
         }
 
@@ -123,48 +148,59 @@
             position: relative;
             z-index: 10;
         }
-
-        .sm-section1 .sm-top-bg {
-            background: #fff;
-            position: absolute;
-            width: 90%;
-            right: 0;
-            top: 0px;
-            height: 100%;
-            z-index: 1;
-            border-bottom-left-radius: 30px;
-            box-shadow: 2px 2px 11px 0px #b9d5f8;
-        }
-
-        .sm-section2 .sm-container div {
-            background: url(/image/jx.png);
-            background-size: 100% 100%;
-            width: 28%;
-            float: left;
-            margin: 0 2.5%;
-            color: #fff;
-            text-align: center;
-        }
-
         .sm-section2 .sm-container div img {
             width: 70%;
             margin-top: 10px;
-            /*height: 165px;*/
+            margin-bottom: 10px;
         }
+        @media only screen and (min-width:768px) {
+            .sm-section2 .sm-container div {
+                background: url(/image/jx.png);
+                background-size: 100% 100%;
+                width: 28%;
+                float: left;
+                margin: 0 2.5%;
+                color: #fff;
+                text-align: center;
+            }
+            .sm-section2 .sm-container div span {
+                display: inline-block;
+                /*height: 60px;*/
+                padding: 15px;
+                font-weight: 600;
+                font-size: 20px;
+            }
 
-        .sm-section2 .sm-container div span {
-            display: inline-block;
-            height: 60px;
-            padding: 15px;
-            /*font-weight: 600;*/
         }
+        @media only screen and (max-width:768px){
 
+            .sm-section2 .sm-container div {
+                background: url(/image/jx.png);
+                background-size: 100% 100%;
+                width: 30%;
+                float: left;
+                margin: 0px 1.66%;
+                color: #fff;
+                text-align: center;
+            }
+            .sm-section2 .sm-container div span {
+                display: inline-block;
+                font-size: 13px;
+                /*height: 60px;*/
+                padding: 15px 0;
+                /*font-weight: 600;*/
+            }
+            .sm-section2 .sm-container div span strong{
+                font-size: 15px;
+            }
+        }
         .sm-section3 {
             text-align: center;
         }
 
         .sm-section3 .bg-blue {
-            background: linear-gradient(#5890e6, #154ecd);
+            /*background: linear-gradient(#5890e6, #154ecd);*/
+            background: linear-gradient(#639bf2, #2037b3,#07a8f1);
             position: relative;
         }
 
@@ -424,16 +460,16 @@
             font-weight: 400;
             font-size: 16px;
         }
-
-        .sm-section5 .sm-container div p {
-            background: url(image/bg9.png);
-            background-size: 100% 100%;
-            padding: 20px;
-            font-size: 14px;
-            letter-spacing: 4px;
-            text-align: center;
+        @media only screen and (max-width:768px) {
+            .sm-section5 .sm-container div p {
+                background: url(image/bg9.png);
+                background-size: 100% 100%;
+                padding: 20px;
+                font-size: 14px;
+                letter-spacing: 4px;
+                text-align: center;
+            }
         }
-
         .sm-section5 a {
             text-decoration: none;
             background: linear-gradient(#b2d2f3, #3a9eff);
@@ -587,25 +623,41 @@
             letter-spacing: 4px;
         }
 
-        #lunbo {
+        .side {
             width: 100%;
             overflow: hidden;
         }
 
-        #lunbo ul {
+        .side ul {
             /*				display: inline-block;*/
             height: 100%;
         }
 
-        #lunbo li {
+        .side li {
             height: 100%;
             float: left;
         }
 
-        #lunbo img {
+        .side img {
             width: 100%;
             height: 100%;
         }
+        /*@media only screen and (min-width:768px) {
+            #lunbo{
+                display: block;
+            }
+            #lunbo1{
+                display: none;
+            }
+        }
+        @media only screen and (max-width:768px) {
+            #lunbo{
+                display: none;
+            }
+            #lunbo1{
+                display: block;
+            }
+        }*/
         /*#lunbo li img:hover{width:300px;height: 100%;}*/
         /*#lunbo li img{
             transition: width 5s linear 2s;
@@ -624,7 +676,15 @@
             <li><img src="/image/lunbo/lunbo1.jpg "></li>
         </ul>
     </div>
-
+    <!--<div class="side" id="lunbo1">
+        <ul>
+            <li><img src="/image/lunbo/lunbo3.jpg "></li>
+            <li><img src="/image/lunbo/lunbo1.jpg "></li>
+            <li><img src="/image/lunbo/lunbo2.jpg "></li>
+            <li><img src="/image/lunbo/lunbo3.jpg "></li>
+            <li><img src="/image/lunbo/lunbo1.jpg "></li>
+        </ul>
+    </div>-->
     <!--<div style="text-align: center;margin-top: -200px; "><a target="_blank " href="wxss.html " class="sm-big-btn ">微信扫一扫</a></div>-->
 </div>
 <div class="sm-section1 ">
@@ -637,8 +697,8 @@
             <span>微信扫一扫</span>
         </div>
         <div class="rectangle">
-            <img src="image/jiantou.jpg" />
-            <span>买真货领积分</span>
+            <img src="image/jiantou.png" />
+            <span>真货确认</span>
         </div>
         <div class="rectangle ">
             <img src="image/jf.png" />
@@ -651,7 +711,7 @@
     <h1>闪码的优势</h1>
     <div class="sm-container ">
         <div>
-            <span><strong>简单无门槛</strong> <br />无需App <br />只要扫一扫</span>
+            <span><strong>简单落地</strong> <br />无需App <br />只要扫一扫</span>
             <img src="/image/Group1.png " />
         </div>
         <div>
@@ -673,12 +733,12 @@
                 <span class="top38"> 私钥签发授权书，任何人无法仿造 </span>
             </div>
             <div class="mt2 ">
-                <span>消费者委托闪码平台进行验证</span>
+                <span>利用交易通知企业责任地址</span>
                 <span>消费者将二维码上的授权书信息以交易形式通知责任地址</span>
 
             </div>
             <div class="mt1 ">
-                <span>链上排重签名校验</span>
+                <span>验证过程链上公示</span>
                 <span>
 							检查该产品编号是否第一次上链，
 							检查签名信息是否正确无误
@@ -693,7 +753,7 @@
             </div>
         </div>
         <div class="btn-div">
-            <a target="_blank " href="/home/wxss" class="sm-big-btn">微信扫一扫</a>
+            <a target="_blank " href="/home/wxss " class="sm-big-btn">微信扫一扫</a>
         </div>
     </div>
 </div>
@@ -708,16 +768,16 @@
         <ul>
             <li>
                 <h3>广阔蓝海</h3></li>
-            <li><strong>1700</strong>万注册商标</li>
+            <li>全球<strong>1700</strong>万注册商标</li>
             <li><strong>900</strong>万家有产品生产行为的企业</li>
         </ul>
 
         <ul>
             <li>
                 <h3>闪码迎接新时代</h3></li>
-            <li>实体流量引入线上</li>
-            <li>由一次性消费变成利益共同体</li>
-            <li>帮助企业链改，拥抱价值互联网，迎接新时代</li>
+            <li>将线下销量变为线上流量</li>
+            <li>顾客和厂商利益捆绑，实现共赢</li>
+            <li>帮助企业链改，拥抱价值互联网</li>
         </ul>
     </div>
 
@@ -739,7 +799,7 @@
                 <div class="line "></div> <span class="ic_events "><i class="png "></i></span>
                 <p class="txt_events ">
                     <strong>2019.06</strong>
-                    <span>平台超百万用户</span>
+                    <span>生产型企业入驻</span>
                 </p>
             </li>
             <li class="right_li ">
@@ -753,7 +813,7 @@
                 <div class="line "></div> <span class="ic_events "><i class="png "></i></span>
                 <p class="txt_events ">
                     <strong>2020.10</strong>
-                    <span>平台用户量过亿</span>
+                    <span>全球流通防伪产品过亿</span>
                 </p>
             </li>
         </ul>
@@ -899,22 +959,39 @@
 
 </div>
 <script>
-    var li = document.getElementById('lunbo').getElementsByTagName("li");
-    var ul = document.getElementById('lunbo').getElementsByTagName("ul")[0];
-    //
-    var clientWidth = document.body.clientWidth;
-    ul.style.marginLeft = "0px";
-    ul.style.width = clientWidth * 5 + 'px';
-    for(var i = 0; i < 5; i++) {
-        li[i].style.width = clientWidth + "px";
-    }
-    setInterval(function() {
-        ul.style.marginLeft = parseInt(ul.style.marginLeft) - clientWidth + "px";
 
-        if(parseInt(ul.style.marginLeft) <= -clientWidth * 3) {
-            ul.style.marginLeft = "0px"
+    var clientWidth = document.body.clientWidth;
+    lunbo('lunbo')
+
+    function lunbo(id){
+        var li = document.getElementById(id).getElementsByTagName("li");
+        var ul = document.getElementById(id).getElementsByTagName("ul")[0];
+        //
+        var img = document.getElementById(id).getElementsByTagName("img");
+
+        if (clientWidth<=768) {
+            for(var ii = 0; ii < 5; ii++) {
+                var imgsrc = img[ii].src
+                var str = imgsrc.split('.jpg');
+                img[ii].src  = str[0] + "-1.jpg";
+
+            }
         }
-    }, 2500);
+
+
+        ul.style.marginLeft = "0px";
+        ul.style.width = clientWidth * 5 + 'px';
+        for(var i = 0; i < 5; i++) {
+            li[i].style.width = clientWidth + "px";
+        }
+        setInterval(function() {
+            ul.style.marginLeft = parseInt(ul.style.marginLeft) - clientWidth + "px";
+
+            if(parseInt(ul.style.marginLeft) <= -clientWidth * 3) {
+                ul.style.marginLeft = "0px"
+            }
+        }, 2500);
+    }
 </script>
 </body>
 
