@@ -36,6 +36,7 @@
         .sm-section7 {
             padding: 50px 0;
         }
+
         @media only screen and (min-width:768px) {
             .sm-section1 {
                 background: transparent;
@@ -54,6 +55,7 @@
                 box-shadow: 2px 2px 11px 0px #b9d5f8;
             }
         }
+
         @media only screen and (max-width:768px) {
             .sm-section1 {
                 background: transparent;
@@ -67,10 +69,11 @@
                 top: 0px;
                 height: 100%;
                 z-index: 1;
-                box-shadow: 0px -1px 6px 0px #b9d5f8;
+                border-bottom: 1px solid #e3e8ef;
             }
-            .side{height: 220px;}
+            /*.side{height: 220px;}*/
         }
+
         .sm-section1 h1 {
             color: #2454af;
         }
@@ -100,14 +103,6 @@
         }
 
         @media only screen and (max-width:768px) {
-
-            .footer {
-                line-height: 25px;
-                padding-top: 20px;
-            }
-            .ifBr {
-                display: block;
-            }
             .sm-section7 .sm-container div {
                 width: 50%;
                 float: left;
@@ -117,12 +112,6 @@
         }
 
         @media only screen and (min-width:768px) {
-            .footer {
-                line-height: 150px;
-            }
-            .ifBr {
-                display: none;
-            }
             .sm-section7 .sm-container div {
                 width: 19%;
                 /* height: 110px; */
@@ -148,11 +137,13 @@
             position: relative;
             z-index: 10;
         }
+
         .sm-section2 .sm-container div img {
             width: 70%;
             margin-top: 10px;
             margin-bottom: 10px;
         }
+
         @media only screen and (min-width:768px) {
             .sm-section2 .sm-container div {
                 background: url(/image/jx.png);
@@ -170,10 +161,9 @@
                 font-weight: 600;
                 font-size: 20px;
             }
-
         }
-        @media only screen and (max-width:768px){
 
+        @media only screen and (max-width:768px) {
             .sm-section2 .sm-container div {
                 background: url(/image/jx.png);
                 background-size: 100% 100%;
@@ -186,21 +176,22 @@
             .sm-section2 .sm-container div span {
                 display: inline-block;
                 font-size: 13px;
-                /*height: 60px;*/
+                height: 60px;
                 padding: 15px 0;
                 /*font-weight: 600;*/
             }
-            .sm-section2 .sm-container div span strong{
+            .sm-section2 .sm-container div span strong {
                 font-size: 15px;
             }
         }
+
         .sm-section3 {
             text-align: center;
         }
 
         .sm-section3 .bg-blue {
             /*background: linear-gradient(#5890e6, #154ecd);*/
-            background: linear-gradient(#639bf2, #2037b3,#07a8f1);
+            background: linear-gradient(#639bf2, #2037b3, #07a8f1);
             position: relative;
         }
 
@@ -272,24 +263,33 @@
                 position: relative;
                 background: url(/image/dbx.png) no-repeat;
                 background-size: 100% 100%;
-                width: 36%;
+                width: 40%;
                 /*margin: 50px 14%;*/
                 color: #fff;
             }
             .bg-blue .mt1:nth-child(1) {
                 margin-top: 30px;
             }
+            /*.bg-blue .mt1:nth-child(3) span:nth-child(1){
+                line-height: 33px !important;
+            }
+            .bg-blue .mt2:nth-child(4) span:nth-child(1){
+                line-height: 33px !important;
+            }*/
             .mt1 {
-                margin-left: 13%;
+                margin-left: 8%;
             }
             .mt2 {
-                margin-left: 51%;
+                margin-left: 52%;
             }
             .sm-section3 .sm-container div span:nth-child(1) {
                 display: inline-block;
                 width: 60%;
                 line-height: 22px;
                 padding: 30% 0;
+                top: 50%;
+                position: absolute;
+                transform: translate(-50%, -50%);
             }
             .sm-section3 .sm-container div span:nth-child(2) {
                 position: absolute;
@@ -460,16 +460,18 @@
             font-weight: 400;
             font-size: 16px;
         }
-        @media only screen and (max-width:768px) {
-            .sm-section5 .sm-container div p {
-                background: url(image/bg9.png);
-                background-size: 100% 100%;
-                padding: 20px;
-                font-size: 14px;
-                letter-spacing: 4px;
-                text-align: center;
-            }
+        /*@media only screen and (max-width:768px) {*/
+
+        .sm-section5 .sm-container div p {
+            background: url(image/bg9.png);
+            background-size: 100% 100%;
+            padding: 20px;
+            font-size: 14px;
+            letter-spacing: 4px;
+            text-align: center;
         }
+        /*}*/
+
         .sm-section5 a {
             text-decoration: none;
             background: linear-gradient(#b2d2f3, #3a9eff);
@@ -595,11 +597,12 @@
         }
 
         .footer {
-            height: 150px;
+            height: 110px;
             color: #fff;
             font-size: 20px;
             text-align: center;
             letter-spacing: 2px;
+            padding-top: 50px;
             background: linear-gradient(#78ADFF, #407BFE);
         }
 
@@ -640,24 +643,8 @@
 
         .side img {
             width: 100%;
-            height: 100%;
+            /*height: 100%;*/
         }
-        /*@media only screen and (min-width:768px) {
-            #lunbo{
-                display: block;
-            }
-            #lunbo1{
-                display: none;
-            }
-        }
-        @media only screen and (max-width:768px) {
-            #lunbo{
-                display: none;
-            }
-            #lunbo1{
-                display: block;
-            }
-        }*/
         /*#lunbo li img:hover{width:300px;height: 100%;}*/
         /*#lunbo li img{
             transition: width 5s linear 2s;
@@ -676,15 +663,7 @@
             <li><img src="/image/lunbo/lunbo1.jpg "></li>
         </ul>
     </div>
-    <!--<div class="side" id="lunbo1">
-        <ul>
-            <li><img src="/image/lunbo/lunbo3.jpg "></li>
-            <li><img src="/image/lunbo/lunbo1.jpg "></li>
-            <li><img src="/image/lunbo/lunbo2.jpg "></li>
-            <li><img src="/image/lunbo/lunbo3.jpg "></li>
-            <li><img src="/image/lunbo/lunbo1.jpg "></li>
-        </ul>
-    </div>-->
+
     <!--<div style="text-align: center;margin-top: -200px; "><a target="_blank " href="wxss.html " class="sm-big-btn ">微信扫一扫</a></div>-->
 </div>
 <div class="sm-section1 ">
@@ -706,7 +685,6 @@
         </div>
     </div>
 </div>
-
 <div class="sm-section2 ">
     <h1>闪码的优势</h1>
     <div class="sm-container ">
@@ -727,24 +705,24 @@
 <div class="sm-section3 ">
     <h1>链上结构</h1>
     <div class="bg-blue">
-        <div class="sm-container ">
-            <div class="mt1 ">
+        <div class="sm-container">
+            <div class="mt1">
                 <span>企业责任地址签发授权二维码</span>
                 <span class="top38"> 私钥签发授权书，任何人无法仿造 </span>
             </div>
-            <div class="mt2 ">
+            <div class="mt2">
                 <span>利用交易通知企业责任地址</span>
                 <span>消费者将二维码上的授权书信息以交易形式通知责任地址</span>
 
             </div>
-            <div class="mt1 ">
+            <div class="mt1">
                 <span>验证过程链上公示</span>
                 <span>
 							检查该产品编号是否第一次上链，
 							检查签名信息是否正确无误
 	 					 </span>
             </div>
-            <div class="mt2 ">
+            <div class="mt2">
                 <span>通过交易返还验真结果</span>
                 <span>
 							责任地址上发起地址返回一个交易，
@@ -753,7 +731,7 @@
             </div>
         </div>
         <div class="btn-div">
-            <a target="_blank " href="/home/wxss " class="sm-big-btn">微信扫一扫</a>
+            <a target="_blank " href="/home/wxss" class="sm-big-btn">微信扫一扫</a>
         </div>
     </div>
 </div>
@@ -950,34 +928,34 @@
     </div>
     <!--<div><button>留下您的联系方式</button></div>-->
 </div>
-<!--<div class="sm-section7 ">
-    <h1>关注我们</h1>
-</div>-->
-<div class="footer ">
-    联系电话:010-52857497&nbsp;&nbsp;&nbsp;&nbsp;
-    <br class="ifBr" />企业邮箱:h@nrcone.com
 
+<div class="footer">
+    <div>联系电话：010-52857497 </div>
+    <div>企业邮箱：h@nrcone.com</div>
 </div>
 <script>
-
     var clientWidth = document.body.clientWidth;
+
+    var img = document.getElementById("lunbo").getElementsByTagName("img");
+    var wHeight = parseInt(clientWidth / 2 - clientWidth * 0.08)
+
+    if(clientWidth <= 768) {
+        document.getElementsByClassName("mt1")[0].style.height = wHeight + "px";
+        document.getElementsByClassName("mt2")[0].style.height = wHeight + "px";
+        document.getElementsByClassName("mt1")[1].style.height = wHeight + "px";
+        document.getElementsByClassName("mt2")[1].style.height = wHeight + "px";
+
+        for(var ii = 0; ii < 5; ii++) {
+            var imgsrc = img[ii].src
+            var str = imgsrc.split('.jpg');
+            img[ii].src = str[0] + "-2.jpg";
+        }
+    }
     lunbo('lunbo')
 
-    function lunbo(id){
+    function lunbo(id) {
         var li = document.getElementById(id).getElementsByTagName("li");
         var ul = document.getElementById(id).getElementsByTagName("ul")[0];
-        //
-        var img = document.getElementById(id).getElementsByTagName("img");
-
-        if (clientWidth<=768) {
-            for(var ii = 0; ii < 5; ii++) {
-                var imgsrc = img[ii].src
-                var str = imgsrc.split('.jpg');
-                img[ii].src  = str[0] + "-1.jpg";
-
-            }
-        }
-
 
         ul.style.marginLeft = "0px";
         ul.style.width = clientWidth * 5 + 'px';
