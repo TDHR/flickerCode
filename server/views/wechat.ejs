@@ -8,38 +8,118 @@
     <title>微信扫一扫</title>
     <style>
         *{margin: 0;padding: 0;}
-        body{background: #000;}
-        img{
-            height: 500px;
-            width: 500px;
+        /*body{background: #000;}*/
+        /*img{*/
+            /*height: 500px;*/
+            /*width: 500px;*/
+            /*position: absolute;*/
+            /*left: 50%;*/
+            /*top: 50%;*/
+            /*margin-left: -250px;*/
+            /*margin-top: -250px;*/
+        /*}*/
+        .imgContainer{
+            position: relative;
+            width: 100%;
+            height: 200px;
+            margin-top: 10%;
+        }
+        #rImg{
             position: absolute;
             left: 50%;
-            top: 50%;
-            margin-left: -250px;
-            margin-top: -250px;
-        }
+            transform: translateX(-100px);
+            width: 200px;
+            height: 200px;
 
+        }
+        .codeImg{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-100px);
+            width: 200px;
+            height: 200px;
+        }
+        .userCheck{
+            margin-top: 20px;
+        }
+        .userImgContainer{
+            margin-top: 10px;
+        }
+        .userImgItem{
+            display: inline-block;
+            width: 50px;
+
+            margin: 4px;
+        }
+        .userImg{
+            width: 100%;
+        }
     </style>
 
 </head>
 
 <body>
-<img id="rImg" src="/image/erw/er.jpg"/>
+<div style="margin-top: 40px;">
+    <p style="text-align: center">闪码</p>
+    <!--<div>-->
+        <!--<img class="codeImg" src="/image/test.gif" alt="">-->
+    <!--</div>-->
+    <p style="text-align: center;margin-top: 10px;">更换二维码剩余时间：<span id="time">60</span>s</p>
+</div>
+<div class="imgContainer">
+
+    <div>
+        <img id="rImg" class="codeImg" src="/image/erw/dconTest/01.png"/>
+    </div>
+</div>
+<div class="userCheck">
+    <div><p style="margin: 20px 0 20px 10px">以下用户已完成存证：</p></div>
+    <div class="userImgContainer">
+        <% result.forEach(function (item) { %>
+        <div class="userImgItem">
+
+            <img src=<%= item.url %> alt="头像" class="userImg">
+        </div>
+        <% }) %>
+    </div>
+
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 <script>
 
-    window.onload = newpic();
+    window.onload = init();
     function newpic(){
 
-        var imgList = ['t0165ddcf2c5db0d408.png','er.jpg','er2.jpg'];
+        var imgList = ['01.png','02.png','03.png','04.png','05.png','06.png','07.png','08.png','09.png','10.png','11.png','12.png','13.png','14.png','15.png','16.png','17.png','18.png','19.png','20.png'];
         //获取1到10之间的随机数
-
+        var imgType = ['dconTest','inuTest','nrcTest'];
         function getRandom(a,b){
             var random = Math.floor(Math.random()*b+a);
             return random;
         }
-        var i = getRandom(0,imgList.length-1);
+        var itemRandom = getRandom(0,imgList.length);
+        var item = imgList[itemRandom];
+        var typeRandom = getRandom(0,imgType.length);
+        var type = imgType[typeRandom];
         var img = document.getElementById("rImg");
-        img.src= "/image/erw/"+imgList[i]
+//        console.log(itemRandom,typeRandom)
+        img.src= `/image/erw/${type}/${item}`
+    }
+    function getCode() {
+        var time = 60;
+        setInterval(function () {
+            time--;
+            $('#time').text(time);
+            if(time === 0) {
+                time = 60;
+                newpic();
+            }
+        },1000);
+    }
+
+    function init () {
+        getCode();
     }
 </script>
 </body>

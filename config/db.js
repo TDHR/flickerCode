@@ -1,11 +1,20 @@
 const mysql = require('mysql');
 const wrapper = require('co-mysql');
+// const pool = mysql.createPool({
+//     host:'localhost',
+//     port:'3306',
+//     user:'root',
+//     password:'978481',
+//     database:'koa2',
+// })
 const pool = mysql.createPool({
-    host:'localhost',
-    port:'3306',
+    host:'59.110.171.208',
     user:'root',
-    password:'978481',
-    database:'koa2',
+    password:'nrc1qaz@WSX',
+    database:'reits_data',
+    port:3306,
+    charset:'utf8mb4',
+    useConnectionPooling: true
 })
 const SqlP = wrapper(pool);
 

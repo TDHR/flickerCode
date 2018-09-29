@@ -15,13 +15,30 @@ exports.index = async (ctx) => {
 };
 exports.wechat = async (ctx) => {
     // console.log(111)
-    await ctx.render('wechat',{
-
+    let result = await queryImg();
+    var test = 1;
+    // console.log(result)
+     await ctx.render('wechat',{
+        result:result
     })
 };
 exports.cjdjh = async (ctx) => {
+
     await ctx.render('cjdjh',{
 
+    })
+};
+
+async function queryImg() {
+    return new Promise((resolve,reject) => {
+        let querySql = `SELECT wechat_user.nickname AS nickname ,wechat_user.headimgurl AS url FROM  codetx LEFT JOIN wechat_user ON codetx.user= wechat_user.openid WHERE wechat_user.nickname IS NOT NULL AND wechat_user.headimgurl IS NOT NULL GROUP BY codetx.user `
+        p.query(querySql,function (err, result) {
+            if(err) reject(err);
+            else {
+                resolve(result);
+                // console.log(result)
+            }
+        })
     })
 }
 // exports.first = async (ctx, next) => {
