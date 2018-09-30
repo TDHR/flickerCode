@@ -64,12 +64,13 @@
     <!--<div>-->
         <!--<img class="codeImg" src="/image/test.gif" alt="">-->
     <!--</div>-->
-    <p style="text-align: center;margin-top: 10px;">更换二维码剩余时间：<span id="time">60</span>s</p>
+    <p style="text-align: center;margin-top: 10px;">更换二维码剩余时间：<span id="time">15</span>s</p>
 </div>
 <div class="imgContainer">
 
     <div>
-        <img id="rImg" class="codeImg" src="/image/erw/dconTest/01.png"/>
+        <!--/image/erw/dconTest/01.png-->
+        <img id="rImg" class="codeImg" src=""/>
     </div>
 </div>
 <div class="userCheck">
@@ -87,8 +88,11 @@
 
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 <script>
-
-    window.onload = init();
+    $().ready(function () {
+        init()
+        newpic();
+    })
+//    window.onload = init();
     function newpic(){
 
         var imgList = ['01.png','02.png','03.png','04.png','05.png','06.png','07.png','08.png','09.png','10.png','11.png','12.png','13.png','14.png','15.png','16.png','17.png','18.png','19.png','20.png'];
@@ -103,16 +107,16 @@
         var typeRandom = getRandom(0,imgType.length);
         var type = imgType[typeRandom];
         var img = document.getElementById("rImg");
-//        console.log(itemRandom,typeRandom)
+        console.log(itemRandom,typeRandom)
         img.src= `/image/erw/${type}/${item}`
     }
     function getCode() {
-        var time = 60;
+        var time = 15;
         setInterval(function () {
             time--;
             $('#time').text(time);
             if(time === 0) {
-                time = 60;
+                time = 15;
                 newpic();
             }
         },1000);
