@@ -13,11 +13,9 @@ exports.index = async (ctx) => {
 
     })
 };
+//二维码页面
 exports.wechat = async (ctx) => {
-    // console.log(111)
     let result = await queryImg();
-    var test = 1;
-    // console.log(result)
      await ctx.render('wechat',{
         result:result
     })
@@ -37,6 +35,27 @@ async function queryImg() {
             else {
                 resolve(result);
                 // console.log(result)
+            }
+        })
+    })
+}
+
+//获取二维码信息
+exports.getCodeMessage = async function (ctx) {
+   let codeMessage =  await getCodeMessageResult();
+   ctx.body = {
+       result:codeMessage
+   }
+};
+//获取二维码信息的查询语句
+async function getCodeMessageResult() {
+    return new Promise((resolve,reject) => {
+        let sql = `select * from code_message order by id desc limit 1`;
+        p.query(sql,function (err, result) {
+            if(err) reject(err);
+            else {
+                // console.log(result[0]);
+                resolve(result[0])
             }
         })
     })

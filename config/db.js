@@ -5,7 +5,9 @@ const wrapper = require('co-mysql');
 //     port:'3306',
 //     user:'root',
 //     password:'978481',
-//     database:'koa2',
+//     database:'flickercodetest',
+//     charset:'utf8mb4',
+//     useConnectionPooling: true
 // })
 const pool = mysql.createPool({
     host:'59.110.171.208',
