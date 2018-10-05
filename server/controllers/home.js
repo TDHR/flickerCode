@@ -29,7 +29,8 @@ exports.cjdjh = async (ctx) => {
 
 async function queryImg() {
     return new Promise((resolve,reject) => {
-        let querySql = `SELECT wechat_user.nickname AS nickname ,wechat_user.headimgurl AS url FROM  codetx LEFT JOIN wechat_user ON codetx.user= wechat_user.openid WHERE wechat_user.nickname IS NOT NULL AND wechat_user.headimgurl IS NOT NULL GROUP BY codetx.user GROUP BY codetx.user ORDER BY codetx.id  DESC`
+        let querySql = `SELECT wechat_user.nickname AS nickname ,wechat_user.headimgurl AS url FROM  codetx LEFT JOIN wechat_user ON codetx.user= wechat_user.openid WHERE wechat_user.nickname IS NOT NULL AND wechat_user.headimgurl IS NOT NULL GROUP BY codetx.user ORDER BY codetx.id  DESC`
+
         p.query(querySql,function (err, result) {
             if(err) reject(err);
             else {
