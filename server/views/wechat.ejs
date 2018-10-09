@@ -55,12 +55,20 @@
             width: 100%;
         }
         canvas{
+            display: none;
             position: absolute;
             left: 50%;
             transform: translateX(-100px);
             width: 200px;
             height: 200px;
 
+        }
+        .codeImg{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-100px);
+            width: 200px;
+            height: 200px;
         }
     </style>
 
@@ -169,7 +177,25 @@
             height:100,
             text:`${url02}?${message}`
         })
+        getCanvas();
     }
+
+    function convertCanvasToImage(canvas) {
+
+        var image = new Image();
+
+        image.src = canvas.toDataURL("image/png");
+        image.className = 'codeImg'
+        return image;
+    }
+    function getCanvas() {
+        var mycanvas1=document.getElementsByTagName('canvas')[0];
+
+        var img=convertCanvasToImage(mycanvas1);
+        $('#code').append(img);
+    }
+
+
 </script>
 </body>
 
