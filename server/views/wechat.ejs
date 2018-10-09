@@ -144,7 +144,7 @@
                url:'/home/getCodeMessage',
                data:{},
                success:function (res) {
-                   console.log(res.result);
+//                   console.log(res.result);
 //                   s=HweOKK2CcM1vCDtAm6/Mg5hN2YzX+F1zCh3XnBein57xfoiF7UemhSlnzzWDr9w/pBaHrZBo1XzPS05NV/PJ948=&o=id:18419&id=18419&a=1BtvWKc9bdReVcP74WngsmuRiJrkjUiBNc
                    let codeMessage = `s=${res.result.signMessage}&o=${res.result.originMessage}&id=${res.result.codeId}&a=${res.result.address}`;
                    createCode(codeMessage)
