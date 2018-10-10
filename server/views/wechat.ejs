@@ -92,6 +92,7 @@
         <!--<img id="rImg" class="codeImg" src=""/>-->
     </div>
 </div>
+<p id="tips" style="text-align: center;color: #0b52a2;margin-top: 10px;"></p>
 <div class="userCheck">
     <div><p style="margin: 20px 0 20px 10px">以下用户已完成存证：</p></div>
     <div class="userImgContainer">
@@ -112,6 +113,7 @@
     $().ready(function () {
         init()
         code();
+        getTips();
 //        newpic();
     })
     function init () {
@@ -142,6 +144,7 @@
             if(time === 0) {
                 time = 15;
                 code();
+                getTips();
             }
         },1000);
     }
@@ -193,6 +196,17 @@
 
         var img=convertCanvasToImage(mycanvas1);
         $('#code').append(img);
+    }
+    function getRandom(a,b){
+        var random = Math.floor(Math.random()*b+a);
+        return random;
+    }
+    //随机tips
+    var tips = ['这张二维码具有区块链级别的安全性','这种二维码未来将会和产品包装在一起销售','扫一扫，真货将会获得厂家发行的区块链积分','扫码既防伪，不再有钱包，密钥，12字符的困扰','获得厂家积分，可以打折，促销，参加厂家的各种活动']
+    function getTips() {
+        var itemRandom = getRandom(0,tips.length);
+        var item = tips[itemRandom];
+        $('#tips').text(item);
     }
 
 
