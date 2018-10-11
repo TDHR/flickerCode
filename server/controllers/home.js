@@ -16,7 +16,7 @@ exports.index = async (ctx) => {
 //二维码页面
 exports.wechat = async (ctx) => {
     let result = await queryImg();
-     await ctx.render('wechat',{
+    await ctx.render('wechat',{
         result:result
     })
 };
@@ -43,10 +43,10 @@ async function queryImg() {
 
 //获取二维码信息
 exports.getCodeMessage = async function (ctx) {
-   let codeMessage =  await getCodeMessageResult();
-   ctx.body = {
-       result:codeMessage
-   }
+    let codeMessage =  await getCodeMessageResult();
+    ctx.body = {
+        result:codeMessage
+    }
 };
 //获取二维码信息的查询语句
 async function getCodeMessageResult() {
@@ -57,6 +57,53 @@ async function getCodeMessageResult() {
             else {
                 // console.log(result[0]);
                 resolve(result[0])
+            }
+        })
+    })
+}
+
+//2018-10-11 by zhaojia
+//获取微信扫码人
+exports.getWxperson = async function (ctx) {
+    let result =  await getWxpersonResult(ctx.request.query.start,ctx.request.query.length);
+    let result2 =  await getWxpersonResult2()
+    ctx.body = {
+        result:result,
+        length:result2
+    }
+};
+//获微信扫码人sql语句
+async function getWxpersonResult(start,length) {
+    return new Promise((resolve,reject) => {
+        let sql = `SELECT wechat_user.nickname AS nickname ,
+        wechat_user.headimgurl AS url 
+        FROM  codetx LEFT JOIN wechat_user 
+        ON codetx.user= wechat_user.openid
+        WHERE wechat_user.nickname IS NOT NULL AND LENGTH(wechat_user.headimgurl)>0  
+        GROUP BY codetx.user ORDER BY codetx.id  DESC 
+        limit ${start} , ${length} `;
+
+        p.query(sql,function (err, result) {
+            if(err) reject(err);
+            else {
+                resolve(result);
+            }
+        })
+    })
+}
+async function getWxpersonResult2() {
+    return new Promise((resolve,reject) => {
+        let sql = `SELECT wechat_user.nickname AS nickname ,
+        wechat_user.headimgurl AS url 
+        FROM  codetx LEFT JOIN wechat_user 
+        ON codetx.user= wechat_user.openid
+        WHERE wechat_user.nickname IS NOT NULL AND LENGTH(wechat_user.headimgurl)>0  
+        GROUP BY codetx.user ORDER BY codetx.id  DESC `;
+
+        p.query(sql,function (err, result2) {
+            if(err) reject(err);
+            else {
+                resolve(result2.length);
             }
         })
     })

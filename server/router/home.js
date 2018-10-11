@@ -10,6 +10,10 @@ router .get('/',home.index);
 router .get('home/wxss',home.wechat);
 router .get ('home/cjdjh',home.cjdjh);
 router .post('home/getCodeMessage',home.getCodeMessage);
+
+//2018-10-11 by zhaojia
+router .get('home/getWxperson',home.getWxperson);
+
 //跳转到添加产品的页面
 // router .get('home/add',home.first);
 // // router .post('home/second',home.second);
