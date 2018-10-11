@@ -10,13 +10,13 @@
         *{margin: 0;padding: 0;}
         /*body{background: #000;}*/
         /*img{*/
-            /*height: 500px;*/
-            /*width: 500px;*/
-            /*position: absolute;*/
-            /*left: 50%;*/
-            /*top: 50%;*/
-            /*margin-left: -250px;*/
-            /*margin-top: -250px;*/
+        /*height: 500px;*/
+        /*width: 500px;*/
+        /*position: absolute;*/
+        /*left: 50%;*/
+        /*top: 50%;*/
+        /*margin-left: -250px;*/
+        /*margin-top: -250px;*/
         /*}*/
         .imgContainer{
             position: relative;
@@ -46,13 +46,12 @@
             margin-top: 10px;
         }
         .userImgItem{
-            display: inline-block;
-            width: 50px;
-
-            margin: 4px;
+            /*            display: inline-block;
+            */            width: 100%;
         }
         .userImg{
-            width: 100%;
+            width: 50px;
+            margin: 4px;
         }
         canvas{
             display: none;
@@ -76,9 +75,9 @@
 
 <body>
 <div style="margin-top: 40px;">
-    <p style="text-align: center"><a href="/" style="text-decoration: none">闪码，通过区块链防伪技术助力实体企业腾飞</a></p>
+    <p style="text-align: center">闪码</p>
     <!--<div>-->
-        <!--<img class="codeImg" src="/image/test.gif" alt="">-->
+    <!--<img class="codeImg" src="/image/test.gif" alt="">-->
     <!--</div>-->
     <p style="text-align: center;margin-top: 10px;">更换二维码剩余时间：<span id="time">15</span>s</p>
 </div>
@@ -92,16 +91,10 @@
         <!--<img id="rImg" class="codeImg" src=""/>-->
     </div>
 </div>
-<p id="tips" style="text-align: center;color: red;margin-top: 20px;font-size: 20px"></p>
 <div class="userCheck">
     <div><p style="margin: 20px 0 20px 10px">以下用户已完成存证：</p></div>
     <div class="userImgContainer">
-        <% result.forEach(function (item) { %>
-        <div class="userImgItem">
-
-            <img src=<%= item.url %> alt="头像" class="userImg">
-        </div>
-        <% }) %>
+        <div class="userImgItem"></div>
     </div>
 
 </div>
@@ -110,10 +103,10 @@
 <script src="https://cdn.bootcss.com/lrsjng.jquery-qrcode/0.14.0/jquery-qrcode.min.js"></script>
 
 <script>
+    var allength ;
     $().ready(function () {
         init()
         code();
-        getTips();
 //        newpic();
     })
     function init () {
@@ -144,26 +137,25 @@
             if(time === 0) {
                 time = 15;
                 code();
-                getTips();
             }
         },1000);
     }
     //获取二维码信息
     function code() {
-           $.ajax({
-               method:'POST',
-               url:'/home/getCodeMessage',
-               data:{},
-               success:function (res) {
-//                   console.log(res.result);
+        $.ajax({
+            method:'POST',
+            url:'/home/getCodeMessage',
+            data:{},
+            success:function (res) {
+//                   console.log(re.rsesult);
 //                   s=HweOKK2CcM1vCDtAm6/Mg5hN2YzX+F1zCh3XnBein57xfoiF7UemhSlnzzWDr9w/pBaHrZBo1XzPS05NV/PJ948=&o=id:18419&id=18419&a=1BtvWKc9bdReVcP74WngsmuRiJrkjUiBNc
-                   let codeMessage = `s=${res.result.signMessage}&o=${res.result.originMessage}&id=${res.result.codeId}&a=${res.result.address}`;
-                   createCode(codeMessage)
-               },
-               error:function (error) {
-                   console.log(error);
-               }
-           })
+                let codeMessage = `s=${res.result.signMessage}&o=${res.result.originMessage}&id=${res.result.codeId}&a=${res.result.address}`;
+                createCode(codeMessage)
+            },
+            error:function (error) {
+                console.log(error);
+            }
+        })
     }
 
     //生成二维码
@@ -178,7 +170,6 @@
             render:"canvas",
             width:100,
             height:100,
-            background: "#FFF",
             text:`${url02}?${message}`
         })
         getCanvas();
@@ -198,19 +189,118 @@
         var img=convertCanvasToImage(mycanvas1);
         $('#code').append(img);
     }
-    function getRandom(a,b){
-        var random = Math.floor(Math.random()*b+a);
-        return random;
-    }
-    //随机tips
-    var tips = ['这张二维码具有区块链级别的安全性','这种二维码未来将会和产品包装在一起销售','扫一扫，真货将会获得厂家发行的区块链积分','扫码既防伪，不再有钱包，密钥，12字符的困扰','获得厂家积分，可以打折，促销，参加厂家的各种活动']
-    function getTips() {
-        var itemRandom = getRandom(0,tips.length);
-        var item = tips[itemRandom];
-        $('#tips').text(item);
+
+    //2018-10-11 by zhaojia
+    //请求微信头像方法
+    function getWxperson(start,length) {
+        var imgcontainer = document.getElementsByClassName("userImgItem")[0];
+        var resultLength ;
+        $.ajax({
+            method:'get',
+            url:'/home/getWxperson?start='+start+'&length='+length,
+            success:function (data) {
+                console.log(data,999)
+                data.result.forEach(function(param){
+                    var img = document.createElement("img");
+                    img.src = param.url;
+                    img.alt='头像';
+                    img.className = "userImg";
+                    imgcontainer.append(img)
+                })
+                allength = data.length;
+//              return allength
+            },
+            error:function (error) {
+                console.log(error,111);
+            }
+        })
     }
 
+    //给页面绑定滑轮滚动事件
+    var page=1; //当前第几页
+    var finished=0;
+    var sover=0;
+    var imglength = 60 //每页显示条数据
+    var maxpage;
+    //如果屏幕未到整屏自动加载下一页补满
+    var setdefult=setInterval(function (){
+        if(sover==1)
+            clearInterval(setdefult);
+        else if($(".userCheck").height()+$(".imgContainer").height()+40 <$(window).height())
+            loadmore($(window));
+        else
+            clearInterval(setdefult);
+    },500);
 
+    //加载完
+    function loadover(){
+        if(sover==1)
+        {
+            var overtext="Duang～到底了";
+            $(".loadmore").remove();
+            if($(".loadover").length>0)
+            {
+                $(".loadover span").eq(0).html(overtext);
+            }
+            else
+            {
+                var txt='<div class="loadover"><span>'+overtext+'</span></div>'
+                $("body").append(txt);
+            }
+        }
+    }
+
+    //加载更多
+    var vid=0;
+    function loadmore(obj){
+        if(finished==0 && sover==0)
+        {
+            var scrollTop = $(obj).scrollTop();
+            var scrollHeight = $(document).height();
+            var windowHeight = $(obj).height();
+
+            if($(".loadmore").length==0)
+            {
+                var txt='<div class="loadmore"><span class="loading"></span>加载中..</div>'
+                $("body").append(txt);
+            }
+
+            if (scrollTop + windowHeight -scrollHeight<=50 ) {
+                //此处是滚动条到底部时候触发的事件，在这里写要加载的数据，或者是拉动滚动条的操作
+                //防止未加载完再次执行
+                finished=1;
+
+                setTimeout(function(){
+                    //$(".loadmore").remove();
+                    var start=0;
+                    if(page===1){
+                        start = 0
+                    }else{
+                        start = page*imglength-1
+                    }
+                    getWxperson(start,imglength)
+                    page+=1;
+                    finished=0;
+                    //最后一页
+                    if (allength%imglength>0) {
+                        maxpage = parseInt(allength/imglength)+1
+                    } else{
+                        maxpage = parseInt(allength/imglength)
+                    }
+                    if(page==maxpage)
+                    {
+                        sover=1;
+                        loadover();
+                    }
+                },1000);
+
+            }
+        }
+    }
+    //页面滚动执行事件
+    $(window).scroll(function (){
+        loadmore($(this));
+    });
 </script>
 </body>
 
