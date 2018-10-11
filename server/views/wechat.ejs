@@ -47,7 +47,10 @@
         }
         .userImgItem{
             /*            display: inline-block;
-            */            width: 100%;
+            */
+            width: 100%;
+            max-width: 350px;
+            margin: 0 auto;
         }
         .userImg{
             width: 50px;
@@ -68,6 +71,12 @@
             transform: translateX(-100px);
             width: 200px;
             height: 200px;
+        }
+
+        @media screen  and (min-width: 720px){
+            .userImgItem{
+                max-width: 100%;
+            }
         }
     </style>
 
@@ -91,6 +100,9 @@
         <!--<img id="rImg" class="codeImg" src=""/>-->
     </div>
 </div>
+<div style="padding: 0 20px;margin-top: 20px;">
+    <p id="tips" style="font-size: 20px;color: red;text-align: center;width: 100%"></p>
+</div>
 <div class="userCheck">
     <div><p style="margin: 20px 0 20px 10px">以下用户已完成存证：</p></div>
     <div class="userImgContainer">
@@ -107,6 +119,7 @@
     $().ready(function () {
         init()
         code();
+        getTips();
 //        newpic();
     })
     function init () {
@@ -117,10 +130,10 @@
         var imgList = ['01.png','02.png','03.png','04.png','05.png','06.png','07.png','08.png','09.png','10.png','11.png','12.png','13.png','14.png','15.png','16.png','17.png','18.png','19.png','20.png'];
         //获取1到10之间的随机数
         var imgType = ['dconTest','inuTest','nrcTest'];
-        function getRandom(a,b){
-            var random = Math.floor(Math.random()*b+a);
-            return random;
-        }
+//        function getRandom(a,b){
+//            var random = Math.floor(Math.random()*b+a);
+//            return random;
+//        }
         var itemRandom = getRandom(0,imgList.length);
         var item = imgList[itemRandom];
         var typeRandom = getRandom(0,imgType.length);
@@ -137,6 +150,7 @@
             if(time === 0) {
                 time = 15;
                 code();
+                getTips();
             }
         },1000);
     }
@@ -301,6 +315,17 @@
     $(window).scroll(function (){
         loadmore($(this));
     });
+    //tips
+    function getRandom(a,b){
+        var random = Math.floor(Math.random()*b+a);
+        return random;
+    }
+    var tips = ['这张二维码具有区块链级别的安全性','这种二维码未来将会和产品包装在一起销售','扫一扫，真货将会获得厂家发行的区块链积分','扫码既防伪，不再有钱包，密钥，12字符的困扰','获得厂家积分，可以打折，促销，参加厂家的各种活动']
+    function getTips() {
+        var itemRandom = getRandom(0,tips.length);
+        var item = tips[itemRandom];
+        $('#tips').text(item);
+    }
 </script>
 </body>
 
