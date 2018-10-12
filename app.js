@@ -18,7 +18,7 @@ const myRandom = require('./util/myRandom');
 app.use(bodyParser());
 // app.use(async (ctx)=>{
 //     ctx.body= inform+ '\n' + address;
-//
+//qrcode-test.js
 // })
 app.use(view(path.join(__dirname,'./server/views'),{
     extension:'ejs'
