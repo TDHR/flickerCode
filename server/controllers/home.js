@@ -66,10 +66,10 @@ async function getCodeMessageResult() {
 //获取微信扫码人
 exports.getWxperson = async function (ctx) {
     let result =  await getWxpersonResult(ctx.request.query.start,ctx.request.query.length);
-    let result2 =  await getWxpersonResult2()
+    let result2 =  await getWxpersonResult2();
     ctx.body = {
         result:result,
-        length:result2
+        length:result2.length
     }
 };
 //获微信扫码人sql语句
