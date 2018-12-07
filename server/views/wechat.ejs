@@ -196,12 +196,12 @@
         img.src= `/image/erw/${type}/${item}`
     }
     function getCode() {
-        var time = 15;
+        var time = 300;
         setInterval(function () {
             time--;
             $('#time').text(time);
             if(time === 0) {
-                time = 15;
+                time = 300;
                 code();
                 getTips();
             }
