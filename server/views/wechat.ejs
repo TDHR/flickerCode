@@ -126,7 +126,7 @@
     <!--<div>-->
     <!--<img class="codeImg" src="/image/test.gif" alt="">-->
     <!--</div>-->
-    <p style="text-align: center;margin-top: 10px;">更换二维码剩余时间：<span id="time">15</span>s</p>
+    <p style="text-align: center;margin-top: 10px;">更换二维码剩余时间：<span id="time">900</span>s</p>
 </div>
 <div class="imgContainer">
     <div class="imgContainerCover">
@@ -200,6 +200,9 @@
         setInterval(function () {
             time--;
             $('#time').text(time);
+            if(time%60 === 0) {
+                alert('是否继续等待')
+            }
             if(time === 0) {
                 time = 300;
                 code();
@@ -217,7 +220,7 @@
 //                   console.log(re.rsesult);
 //                   s=HweOKK2CcM1vCDtAm6/Mg5hN2YzX+F1zCh3XnBein57xfoiF7UemhSlnzzWDr9w/pBaHrZBo1XzPS05NV/PJ948=&o=id:18419&id=18419&a=1BtvWKc9bdReVcP74WngsmuRiJrkjUiBNc
                 let codeMessage = `s=${res.result.signMessage}&o=${res.result.originMessage}&a=${res.result.address}`;
-                console.log(codeMessage);
+//                console.log(codeMessage);
                 createCode(codeMessage)
             },
             error:function (error) {
