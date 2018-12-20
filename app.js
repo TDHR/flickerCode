@@ -6,20 +6,34 @@ const path = require('path');
 const bodyParser = require('koa-bodyparser');
 const app = new Koa();
 const ora = require('ora');
+const favicon = require('koa-favicon');
 const static = require('koa-static');
 // const spinner = ora('Loading unicorns').start();
 const myCipher = require('./util/cipher');
 const myRandom = require('./util/myRandom');
+const session = require('koa-session');
 // setTimeout(() => {
 //     spinner.color = 'red';
 //     spinner.text = 'Loading rainbows';
 // },3000);
-
+//设置favicon
+app.use(favicon(__dirname + '/static/image/favicon/favicon.ico'));
 app.use(bodyParser());
-// app.use(async (ctx)=>{
-//     ctx.body= inform+ '\n' + address;
-//qrcode-test.js
-// })
+// app.use(function *(next) {
+//    yield next;
+//    if(parseInt(this.status) === 404){
+//        this.body = '当前页面不存在'
+//    }
+// });
+const sessionConfig = {
+    key:'flickerCode',
+    maxAge: 2*60*60*1000,
+    httpOnly:true,
+    signed:true,
+
+};
+app.keys = ['flicker','code','wh'];
+app.use(session(sessionConfig,app));
 app.use(view(path.join(__dirname,'./server/views'),{
     extension:'ejs'
 }));

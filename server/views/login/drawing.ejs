@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>提取</title>
+    <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+</head>
+<style>
+    /*.container{*/
+    /*width: 60%;*/
+    /*margin-left: 20%;*/
+    /*}*/
+    .header{
+        position: fixed;
+        top:0;
+        left:0;
+    }
+    .container{
+        width: 40%;
+        margin-left: 30%;
+    }
+    .header{
+        width: 100%;
+        max-height: 200px;
+        overflow: hidden;
+    }
+
+    .container{
+        padding: 20px;
+        position: relative;
+    }
+    .headerImg{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+    }
+    h2{
+        text-align: center;
+    }
+    .row{
+        margin-top: 20px;
+    }
+    .item-icon{
+        font-size: 2rem;
+        line-height: 1.5;
+        color: #269abc;
+    }
+    .signup-container {
+        max-width: 570px;
+        padding: 25px 74px;
+        margin: 2% auto 0;
+        background-color: #f5f7f9;
+    }
+    .signin-btn{
+        width:100%;
+    }
+    .loginContainer{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        vertical-align: middle;
+        align-items: center;
+    }
+    .asset{
+        font-weight: bold;
+    }
+</style>
+<body>
+<div class="header">
+    <% if (status) {%>
+        <%= loginMessage %>,欢迎你
+        <%= user %>
+    <% } else { %>
+        <%= loginMessage %>
+    <% } %>
+</div>
+<div>
+    <div class="loginContainer">
+
+        <div class="container">
+            <img src="/image/home01.png" alt="" class="headerImg">
+            <div class="signup-container">
+                <div class="row signintitle">
+                    <h2 class="col-md-12 col-sm-12 col-xs-12">
+                        提取
+                    </h2>
+                    <!--<div>test</div>-->
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                        <span class="glyphicon glyphicon-lock item-icon" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-10 col-sm-10 col-xs-10 asset">
+                        我的全部资产：
+                        <% for(var i in asset) {%>
+                            <div><%=asset[i].NAME%>:<%=asset[i].COUNT%></div>
+                        <%}%>
+                        <!--<input type="password" class="form-control" id="keyword" placeholder="密码" autocomplete="off">-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                        <span class="glyphicon glyphicon-user item-icon" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-10 col-sm-10 col-xs-10">
+                        <input type="text" class="form-control" id="user" placeholder="提取地址" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                        <span class="glyphicon glyphicon-envelope item-icon" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <!--<input type="text" class="form-control" id="imgCode" placeholder="验证码" autocomplete="off">-->
+
+                        <select name="" id="asset" class="form-control">
+                            <% for(var i in asset) {%>
+                            <option value=<%=asset[i].NAME%>><%=asset[i].NAME%></option>
+                            <%}%>
+
+                        </select>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <input type="number" class="form-control" id="assetNumber" placeholder="提取数量" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-4"></div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <button id="signinBtn" type="submit" class="btn btn-info signin-btn">确认提取</button>
+                    </div>
+
+                </div>
+                <!--<div class="row">-->
+                <!--<div class="col-md-2 col-sm-2 col-xs-2"></div>-->
+                <!--<div class="col-md-4 col-sm-4 col-xs-4 goForget">-->
+                <!--<a href="/platform/forgetIndex" class="">忘记密码了</a>-->
+                <!--</div>-->
+                <!--<div class="col-md-4 col-sm-4 col-xs-4 goSignup">-->
+                <!--<a href="/platform/signupIndex" class="">没有账号，去注册</a>-->
+                <!--</div>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
