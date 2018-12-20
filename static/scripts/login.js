@@ -51,7 +51,7 @@ function djs() {
 function isPhoneNum(phoneNumber) {
 
     var phonenum = phoneNumber
-    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+    var myreg = /^1[34578]\d{9}$/;
     if (!myreg.test(phonenum)) {
 //            alert('请输入有效的手机号码！');
         $("#phoneNumber").focus();

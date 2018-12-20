@@ -24,34 +24,27 @@ exports.getPhoneCode = async (ctx) => {
   let phoneMessage = await chectPhoneExist(phone);
   if(phoneMessage.status&&phoneMessage.result){
       let phoneCode = await createPhoneCode();
-      console.log(phoneCode);
+        let flag = await sendPhoneCode(phone,phoneCode,ctx);
 
-      request
-          .post('https://sms.yunpian.com/v2/sms/single_send.json')
-          .set('Accept','application/json;charset=utf-8')
-          .set('Content-Type','application/x-www-form-urlencoded;charset=utf-8')
-          .send({
-              "apikey":"e50da878f115a22f9031df0b0ffe9214",
-              "mobile":phone,
-              "text":`【闪码平台服务】您的登录验证码是${phoneCode}`
-          })
-          .end(function (err,result) {
 
-              if(err){
-                  console.log(JSON.stringify(err));
-                  ctx.body = {
-                      success:false,
-                      message:'发送失败，请稍后再试'
-                  }
-              }else {
-                  console.log(JSON.stringify(result));
-                  ctx.session[phone] = phoneCode;
-                  ctx.body = {
-                      success:true,
-                      message:'发送成功！'
-                  }
-              }
-          })
+      if(flag === 1){
+          ctx.body = {
+                  success:true,
+                  message:'发送成功！'
+          }
+      }else if(flag === 2){
+          ctx.body = {
+              status:false,
+              message:'发送失败，请稍后再试'
+          }
+      }else {
+          ctx.body = {
+              status:false,
+              message:'发送失败'
+          }
+      }
+
+
   }else {
       ctx.body ={
           success:false,
@@ -59,6 +52,36 @@ exports.getPhoneCode = async (ctx) => {
       }
   }
 
+
+};
+//发送获取验证码的请求
+const sendPhoneCode = async function (phone,phoneCode,ctx) {
+    return new Promise((resovle,reject) => {
+        request
+            .post('https://sms.yunpian.com/v2/sms/single_send.json')
+            .set('Accept','application/json;charset=utf-8')
+            .set('Content-Type','application/x-www-form-urlencoded;charset=utf-8')
+            .send({
+                "apikey":"e50da878f115a22f9031df0b0ffe9214",
+                "mobile":phone,
+                "text":`【闪码平台服务】您的验证码是${phoneCode}`
+            })
+            .end(function (err,result) {
+
+                if(err){
+                    console.log(JSON.stringify(err));
+
+                    resovle(2)
+
+                }else {
+
+                    ctx.session[phone] = phoneCode;
+                    resovle(1)
+
+                }
+
+            })
+    })
 
 };
 //查询当前手机号是否已经存在用户表中，如果存在则发送验证码
@@ -102,6 +125,7 @@ exports.login = async (ctx) => {
             message:'验证码不正确，请核对后再提交'
         }
     }else {
+        ctx.session.user = phone;
         ctx.body = {
             success:true,
 
