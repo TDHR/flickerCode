@@ -10,11 +10,17 @@ $('#drawingBtn').click(function () {
     let assetCount = tmp.split(':')[1];
     let assetName = tmp.split(':')[0];
     let userInputCount = parseInt($('#assetNumber').val());
+    let openid = $('#openid').text();
+    let nickname = $('#nickname').text();
+    if(!openid || !nickname){
+        alert('用户信息错误，请重新登录');
+        return false;
+    }
     if(!assetName){
         alert('请选择资产');
         return false;
     }
-    if(!userInput || userInput <= 0){
+    if(!userInput || userInputCount <= 0){
         alert('请填写要提取的金额');
         return false;
     }
@@ -32,7 +38,9 @@ $('#drawingBtn').click(function () {
         data:{
             address:address,
             asset:assetName,
-            number:userInputCount
+            number:userInputCount,
+            openid:openid,
+            nickname:nickname
         },
         beforeSend:function () {
             $('##drawingBtn').attr('disabled','true');

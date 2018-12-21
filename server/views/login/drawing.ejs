@@ -76,6 +76,13 @@
     <% if (status) {%>
         <%= loginMessage %>,欢迎你
         <%= user %>
+        <div id="nickname">
+            <%= userMessage.nickname %>
+        </div>
+        <img src="<%= userMessage.headimgurl %>" alt="avator">
+        <div style="display: none" id="openid">
+            <%= userMessage.openid %>
+        </div>
     <% } else { %>
         <%= loginMessage %>
     <% } %>

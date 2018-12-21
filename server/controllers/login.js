@@ -145,20 +145,21 @@ exports.drawing = async function (ctx) {
           loginMessage:'当前用户未登录，点击登录'
       })
   }else {
-     let openid = await  queryOpenid(user);//查询openid
-      let result = await  queryUserAsset(openid.result.openid);//根据openid查询用户资产
+     let userMessage = await  queryOpenid(user);//查询openid
+      let result = await  queryUserAsset(userMessage.result.openid);//根据openid查询用户资产
       // console.log(result.result)
      await ctx.render('login/drawing',{
           status:true,
           loginMessage:'登录成功',
           user:user,
-         asset:result.result
+          asset:result.result,
+         userMessage:userMessage.result
       })
   }
 };
 // 查询openid
 const queryOpenid = async function (user) {
-  let querySql = `select openid from wechat_user where phone = ${user}`;
+  let querySql = `select openid,nickname,headimgurl from wechat_user where phone = ${user}`;
   return new Promise((resolve,reject) => {
       p.query(querySql,function (error, result) {
           if(error){
@@ -210,7 +211,9 @@ exports.drawingAsset = async function (ctx) {
     let address = ctx.body.address;
     let asset = ctx.body.asset;
     let number = ctx.body.number;
-    let result = await sendDrawingRequest(address,asset,number);
+    let openid = ctx.body.openid;
+    let nickname = ctx.body.nickname;
+    let result = await sendDrawingRequest(address,asset,number,openid,nickname);
     if(result.status){
         ctx.body = {
             success:true,
@@ -225,7 +228,7 @@ exports.drawingAsset = async function (ctx) {
 
 };
 //发送提取请求
-const sendDrawingRequest = async function (address,asset,number) {
+const sendDrawingRequest = async function (address,asset,number,openid,nickname) {
     return new Promise((resolver,reject)=> {
         superagent
             .post('123.206.85.98:3009/transfer/drawing')
@@ -233,7 +236,9 @@ const sendDrawingRequest = async function (address,asset,number) {
             .send({
                 address:address,
                 asset:asset,
-                number:number
+                number:number,
+                openid:openid,
+                nickname:nickname
             })
             .end(function (error, result) {
                 if(error){
