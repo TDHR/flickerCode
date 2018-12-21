@@ -248,6 +248,7 @@ const sendDrawingRequest = async function (address,asset,number,openid,nickname)
                         message:'提取失败，请稍后再试'
                     })
                 }else {
+                    console.log('提币接口'+JSON.stringify(result));
                     if(result.success){
                         resolve({
                             status:true,
