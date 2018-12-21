@@ -9,7 +9,8 @@ $('#drawingBtn').click(function () {
     let address = $('#address').val();
     let assetCount = tmp.split(':')[1];
     let assetName = tmp.split(':')[0];
-    let userInputCount = parseInt($('#assetNumber').val());
+    let userInputCount = $('#assetNumber').val();
+    userInputCount = parseInt(userInputCount);
     let openid = $('#openid').text();
     let nickname = $('#nickname').text();
     if(!openid || !nickname){
@@ -20,7 +21,7 @@ $('#drawingBtn').click(function () {
         alert('请选择资产');
         return false;
     }
-    if(!userInput || userInputCount <= 0){
+    if(!userInputCount || userInputCount <= 0){
         alert('请填写要提取的金额');
         return false;
     }
@@ -43,7 +44,7 @@ $('#drawingBtn').click(function () {
             nickname:nickname
         },
         beforeSend:function () {
-            $('##drawingBtn').attr('disabled','true');
+            $('#drawingBtn').attr('disabled','true');
         },
         error:function (error) {
             console.log(JSON.stringify(error));

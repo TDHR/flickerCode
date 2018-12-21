@@ -208,11 +208,11 @@ const queryUserAsset = async function (openid) {
 };
 //提取方法
 exports.drawingAsset = async function (ctx) {
-    let address = ctx.body.address;
-    let asset = ctx.body.asset;
-    let number = ctx.body.number;
-    let openid = ctx.body.openid;
-    let nickname = ctx.body.nickname;
+    let address = ctx.request.body.address;
+    let asset = ctx.request.body.asset;
+    let number = ctx.request.body.number;
+    let openid = ctx.request.body.openid;
+    let nickname = ctx.request.body.nickname;
     let result = await sendDrawingRequest(address,asset,number,openid,nickname);
     if(result.status){
         ctx.body = {
@@ -229,9 +229,9 @@ exports.drawingAsset = async function (ctx) {
 };
 //发送提取请求
 const sendDrawingRequest = async function (address,asset,number,openid,nickname) {
-    return new Promise((resolver,reject)=> {
-        superagent
-            .post('123.206.85.98:3009/transfer/drawing')
+    return new Promise((resolve,reject)=> {
+        request
+            .post('127.0.0.1:3009/transfer/drawing')
             .set('Accept', 'application/json')
             .send({
                 address:address,
@@ -242,6 +242,7 @@ const sendDrawingRequest = async function (address,asset,number,openid,nickname)
             })
             .end(function (error, result) {
                 if(error){
+                    console.log(JSON.stringify(error))
                     resolve({
                         status:false,
                         message:'提取失败，请稍后再试'
