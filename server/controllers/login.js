@@ -205,3 +205,56 @@ const queryUserAsset = async function (openid) {
     })
 
 };
+//提取方法
+exports.drawingAsset = async function (ctx) {
+    let address = ctx.body.address;
+    let asset = ctx.body.asset;
+    let number = ctx.body.number;
+    let result = await sendDrawingRequest(address,asset,number);
+    if(result.status){
+        ctx.body = {
+            success:true,
+            result:result.message.txId
+        }
+    }else {
+        ctx.body = {
+            success:false,
+            result:result.message
+        }
+    }
+
+};
+//发送提取请求
+const sendDrawingRequest = async function (address,asset,number) {
+    return new Promise((resolver,reject)=> {
+        superagent
+            .post('https://reitschain.com/drawing')
+            .set('Accept', 'application/json')
+            .send({
+                address:address,
+                asset:asset,
+                number:number
+            })
+            .end(function (error, result) {
+                if(error){
+                    resolve({
+                        status:false,
+                        message:'提取失败，请稍后再试'
+                    })
+                }else {
+                    if(result.success){
+                        resolve({
+                            status:true,
+                            message:result
+                        })
+                    }else {
+                        resolve({
+                            status:false,
+                            message:'提取失败'
+                        })
+                    }
+
+                }
+            })
+    } )
+};
