@@ -213,6 +213,12 @@ exports.drawingAsset = async function (ctx) {
     let number = ctx.request.body.number;
     let openid = ctx.request.body.openid;
     let nickname = ctx.request.body.nickname;
+    if(asset!=='INU'){
+        ctx.body = {
+            status:false,
+            result:'当前仅支持INU提取';
+        }
+    }
     let result = await sendDrawingRequest(address,asset,number,openid,nickname);
     if(result.status){
         ctx.body = {
