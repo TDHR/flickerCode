@@ -13,6 +13,8 @@ $('#drawingBtn').click(function () {
     userInputCount = parseInt(userInputCount);
     let openid = $('#openid').text();
     let nickname = $('#nickname').text();
+    nickname = nickname.trim(nickname);
+    openid = openid.trim(openid);
     if(!openid || !nickname){
         alert('用户信息错误，请重新登录');
         return false;
