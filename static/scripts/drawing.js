@@ -53,12 +53,13 @@ $('#drawingBtn').click(function () {
             alert('发送失败，请联系管理员')
         },
         success:function (res) {
+            console.log(JSON.stringify(res))
             if(res.success){
                 alert('提取成功！');
                 console.log(res.result);
                 // window.location.reload()
             }else {
-                alert(res.message);
+                alert(res.result);
             }
         }
     })
