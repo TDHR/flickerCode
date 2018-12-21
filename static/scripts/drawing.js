@@ -60,8 +60,8 @@ $('#drawingBtn').click(function () {
             console.log(JSON.stringify(res))
             if(res.success){
                 alert('提取成功！');
-                console.log(res.result);
-                // window.location.reload()
+                // console.log(res.result);
+                window.location.reload()
             }else {
                 alert(res.result);
             }
