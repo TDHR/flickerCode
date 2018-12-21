@@ -228,7 +228,7 @@ exports.drawingAsset = async function (ctx) {
 const sendDrawingRequest = async function (address,asset,number) {
     return new Promise((resolver,reject)=> {
         superagent
-            .post('https://reitschain.com/drawing')
+            .post('123.206.85.98:3009/transfer/drawing')
             .set('Accept', 'application/json')
             .send({
                 address:address,
