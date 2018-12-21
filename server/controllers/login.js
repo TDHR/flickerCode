@@ -216,7 +216,7 @@ exports.drawingAsset = async function (ctx) {
     if(asset!=='INU'){
         ctx.body = {
             status:false,
-            result:'当前仅支持INU提取';
+            result:'当前仅支持INU提取'
         }
     }
     let result = await sendDrawingRequest(address,asset,number,openid,nickname);
