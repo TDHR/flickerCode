@@ -7,9 +7,15 @@ const router = require('koa-router')();
 //登录页面显示
 exports.index = async (ctx) => {
     // console.log(111)
-    await ctx.render('login/login',{
+    let loginInfo = ctx.session.user;
+    if(loginInfo){
+        ctx.redirect('/login/drawing');
+    }else {
+        await ctx.render('login/login',{
 
-    })
+        })
+    }
+
 };
 //四位随机手机号验证码
 const createPhoneCode = async function () {
@@ -248,6 +254,7 @@ const sendDrawingRequest = async function (address,asset,number,openid,nickname)
             })
             .end(function (error, result) {
                 if(error){
+                    saveDrawingErrorMessage(openid, nickname,asset, number,error.status,address);
                     console.log(JSON.stringify(error))
                     resolve({
                         status:false,
@@ -271,3 +278,30 @@ const sendDrawingRequest = async function (address,asset,number,openid,nickname)
             })
     } )
 };
+
+
+//提取的错误信息保存
+const saveDrawingErrorMessage = async function (openid, nickname,asset, token_number,errorStatus,address) {
+    let date =  new Date();
+    let now = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    let nowStamp = new Date(now).getTime();
+
+    let value = `('${openid}','${nickname}','${asset}',${token_number},'${now}',${nowStamp},'${errorStatus}','${address}')`;
+    let saveSql = `insert into code_drawing_error (openid,nickname,asset,token_number,dateTime,dateTimeStamp,error_status,address) values ${value}`;
+    return new Promise((resolve,reject) => {
+        p.query(saveSql,function(error,result){
+            if(error){
+                console.log(JSON.stringify(error));
+                reject({
+                    status:false,
+                    message:JSON.stringify(error)
+                })
+            }else {
+                resolve({
+                    status:true,
+                    result:result
+                })
+            }
+        })
+    })
+}
