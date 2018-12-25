@@ -255,7 +255,7 @@ const sendDrawingRequest = async function (address,asset,number,openid,nickname)
             .end(function (error, result) {
                 if(error){
                     saveDrawingErrorMessage(openid, nickname,asset, number,error.status,address);
-                    console.log(JSON.stringify(error))
+                    console.log(JSON.stringify(error));
                     resolve({
                         status:false,
                         message:'提取失败，请稍后再试'
