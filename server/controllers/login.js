@@ -275,6 +275,7 @@ const sendDrawingRequest = async function (address,asset,number,openid,nickname)
         request
             .post('127.0.0.1:3009/transfer/drawing')
             .set('Accept', 'application/json')
+            .set('Content-type','application/x-www-form-urlencoded')
             .send({
                 address:address,
                 asset:asset,
