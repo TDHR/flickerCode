@@ -3,7 +3,8 @@ const request = require('superagent');
 const view = require('koa-views');
 const routers = require('./server/router/index');
 const path = require('path');
-const bodyParser = require('koa-bodyparser');
+// const bodyParser = require('koa-bodyparser');
+const koaBody = require('koa-body');
 const app = new Koa();
 const ora = require('ora');
 const favicon = require('koa-favicon');
@@ -18,7 +19,8 @@ const session = require('koa-session');
 // },3000);
 //设置favicon
 app.use(favicon(__dirname + '/static/image/favicon/favicon.ico'));
-app.use(bodyParser());
+// app.use(bodyParser());
+app.use(koaBody());
 // app.use(function *(next) {
 //    yield next;
 //    if(parseInt(this.status) === 404){
