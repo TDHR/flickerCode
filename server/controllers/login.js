@@ -271,18 +271,21 @@ exports.drawingAsset = async function (ctx) {
 };
 //发送提取请求
 const sendDrawingRequest = async function (address,asset,number,openid,nickname) {
+    let  data = {
+        address:address,
+        asset:asset,
+        number:number,
+        openid:openid,
+        nickname:nickname
+    }
+    data = JSON.stringify(data);
     return new Promise((resolve,reject)=> {
         request
             .post('127.0.0.1:3009/transfer/drawing')
             .set('Accept', 'application/json')
-            .set('Content-type','application/x-www-form-urlencoded')
-            .send({
-                address:address,
-                asset:asset,
-                number:number,
-                openid:openid,
-                nickname:nickname
-            })
+            .set('Content-type','application/json')
+            .set('Content-Length',Buffer.byteLength(data))
+            .send(data)
             .end(function (error, result) {
                 if(error){
                     saveDrawingErrorMessage(openid, nickname,asset, number,error.status,address);
