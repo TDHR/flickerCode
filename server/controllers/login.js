@@ -143,6 +143,13 @@ exports.login = async (ctx) => {
 
 //提取的页面
 exports.drawing = async function (ctx) {
+
+    //页面维护
+    await ctx.render('login/developing',{
+
+    });
+
+
   let user = ctx.session.user;
 
   if(!user){
