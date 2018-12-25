@@ -275,6 +275,10 @@ const sendDrawingRequest = async function (address,asset,number,openid,nickname)
     return new Promise((resolve,reject)=> {
         request
             .post('127.0.0.1:3009/transfer/drawing')
+            .timeout({
+                response: 5500,  // Wait 5 seconds for the server to start sending,
+                deadline: 60000, // but allow 1 minute for the file to finish loading.
+            })
             .set('Accept', 'application/json')
             .set('Content-type','application/json')
 
