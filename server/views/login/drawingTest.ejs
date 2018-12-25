@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>提取</title>
+    <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+</head>
+<style>
+    /*.container{*/
+    /*width: 60%;*/
+    /*margin-left: 20%;*/
+    /*}*/
+    .header{
+        position: fixed;
+        top:0;
+        left:0;
+    }
+    .container{
+        width: 40%;
+        margin-left: 30%;
+    }
+    .header{
+        width: 100%;
+        max-height: 200px;
+        overflow: hidden;
+    }
+
+    .container{
+
+        padding: 20px;
+        position: relative;
+    }
+    .userMessage{
+        position: absolute;
+        right: 5px;
+        top:10px;
+        /*width: 100px;*/
+        z-index: 999;
+    }
+    #avator{
+
+
+        width: 50px;
+
+    }
+    .headerImg{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+    }
+    h2{
+        text-align: center;
+    }
+    .row{
+        margin-top: 20px;
+    }
+    .item-icon{
+        font-size: 2rem;
+        line-height: 1.5;
+        color: #269abc;
+    }
+    .signup-container {
+        max-width: 570px;
+        padding: 25px 74px;
+        margin: 2% auto 0;
+        background-color: #f5f7f9;
+    }
+    .signin-btn{
+        width:100%;
+    }
+    .loginContainer{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        vertical-align: middle;
+        align-items: center;
+    }
+    .asset{
+        font-weight: bold;
+    }
+    @media screen and (max-width:600px){
+        .container{
+            width:90%;
+            margin-left: 5%;
+        }
+        .signup-container{
+            /*width:90%;*/
+            /*margin-left: 5%;*/
+        }
+        .signup-container {
+            padding: 10px 0;
+        }
+    }
+</style>
+<body>
+<div class="header">
+    <% if (status) {%>
+        <!--<%= loginMessage %>,欢迎你-->
+        <!--<%= user %>-->
+        <!--<div id="nickname">-->
+            <!--<%= userMessage.nickname %>-->
+        <!--</div>-->
+
+        <div style="display: none" id="openid">
+            <%= userMessage.openid %>
+        </div>
+    <% } else { %>
+        <%= loginMessage %>
+    <% } %>
+</div>
+<%if(status){%>
+<div>
+    <div class="loginContainer">
+
+        <div class="container">
+            <div class="userMessage">
+                <!--<img src="<%= userMessage.headimgurl %>" alt="avator" id="avator">-->
+                <div id="nickname">
+                    <%= userMessage.nickname %>
+                </div>
+            </div>
+
+            <img src="/image/home01.png" alt="" class="headerImg">
+            <div class="signup-container">
+                <div class="row signintitle">
+                    <h2 class="col-md-12 col-sm-12 col-xs-12">
+                        提取
+                    </h2>
+                    <!--<div>test</div>-->
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                        <span class="glyphicon glyphicon-lock item-icon" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-10 col-sm-10 col-xs-10 asset">
+                        我的全部资产：
+                        <% for(var i in asset) {%>
+                            <div id="asset<%=i%>"><%=asset[i].NAME%>:<%=asset[i].COUNT%></div>
+                        <%}%>
+                        <!--<input type="password" class="form-control" id="keyword" placeholder="密码" autocomplete="off">-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-sm-0 col-xs-0">
+                        <span class="glyphicon glyphicon-user item-icon" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-10 col-sm-12 col-xs-12">
+                        <input type="text" class="form-control" id="address" placeholder="提取地址" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-sm-0 col-xs-0">
+                        <span class="glyphicon glyphicon-envelope item-icon" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <!--<input type="text" class="form-control" id="imgCode" placeholder="验证码" autocomplete="off">-->
+
+                        <select name="" id="asset" class="form-control">
+                            <% for(var i in asset) {%>
+                            <option value=<%=i%>><%=asset[i].NAME%></option>
+                            <%}%>
+
+                        </select>
+                    </div>
+                    <div class="col-md-6 col-sm-8 col-xs-8">
+                        <input type="number" class="form-control" id="assetNumber" placeholder="提取数量" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-4"></div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <button id="drawingBtn"  class="btn btn-info signin-btn">确认提取</button>
+                    </div>
+
+                </div>
+                <!--<div class="row">-->
+                <!--<div class="col-md-2 col-sm-2 col-xs-2"></div>-->
+                <!--<div class="col-md-4 col-sm-4 col-xs-4 goForget">-->
+                <!--<a href="/platform/forgetIndex" class="">忘记密码了</a>-->
+                <!--</div>-->
+                <!--<div class="col-md-4 col-sm-4 col-xs-4 goSignup">-->
+                <!--<a href="/platform/signupIndex" class="">没有账号，去注册</a>-->
+                <!--</div>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<%}%>
+<script src="/libs/jquery.min.js"></script>
+
+<script>
+     $('#drawingBtn').click(function () {
+
+         let assetIndex = $('#asset').val();
+         let tmp  = $(`#asset${assetIndex}`).text();
+         let address = $('#address').val();
+         let assetCount = tmp.split(':')[1];
+         let assetName = tmp.split(':')[0];
+         let userInputCount = $('#assetNumber').val();
+         userInputCount = parseInt(userInputCount);
+         let openid = $('#openid').text();
+         let nickname = $('#nickname').text();
+         nickname = nickname.trim(nickname);
+         openid = openid.trim(openid);
+         if(assetName!=='INU'){
+             alert('当前仅支持INU提取');
+             return false;
+         }
+         if(!openid || !nickname){
+             alert('用户信息错误，请重新登录');
+             return false;
+         }
+         if(!assetName){
+             alert('请选择资产');
+             return false;
+         }
+         if(!userInputCount || userInputCount <= 0){
+             alert('请填写要提取的金额');
+             return false;
+         }
+         if(parseInt(assetCount) < parseInt(userInputCount)){
+             alert('余额不足');
+             return false;
+         }
+         if(!address){
+             alert('请输入提取地址');
+             return false;
+         }
+         $.ajax({
+             url:'/login/drawing',
+             type:'POST',
+             data:{
+                 address:address,
+                 asset:assetName,
+                 number:userInputCount,
+                 openid:openid,
+                 nickname:nickname
+             },
+             beforeSend:function () {
+                 $('#drawingBtn').attr('disabled','true');
+             },
+             error:function (error) {
+                 console.log(JSON.stringify(error));
+                 alert('发送失败，请联系管理员')
+             },
+             success:function (res) {
+                 console.log(JSON.stringify(res))
+                 if(res.success){
+                     alert('提取成功！');
+                     // console.log(res.result);
+                     window.location.reload()
+                 }else {
+                     alert(res.result);
+                 }
+             }
+         })
+     });
+</script>
+</body>
+</html>
