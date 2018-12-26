@@ -300,6 +300,7 @@ const sendDrawingRequest = async function (address,asset,number,openid,nickname)
                 }else {
 
                     if(result.body.success){
+                        saveDrawingResultMessage(openid, nickname, address, asset, number);
                         resolve({
                             status:true,
                             message:result
@@ -341,4 +342,30 @@ const saveDrawingErrorMessage = async function (openid, nickname,asset, token_nu
             }
         })
     })
-}
+};
+//提取的结果信息保存
+const saveDrawingResultMessage = async function (openid, nickname, address, asset, number) {
+    let date =  new Date();
+    let now = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    let nowStamp = new Date(now).getTime();
+
+    let value = `('${openid}','${nickname}','${address}','${asset}',${number},'${now}',${nowStamp})`;
+    let saveSql = `insert into code_drawing_result (openid,nickname,address,asset,number,dateTime,dateTimeStamp) values ${value}`;
+
+    return new Promise((resolve,reject) => {
+        p.query(saveSql,function (error, result) {
+            if(error) {
+                console.log(JSON.stringify(error));
+                reject({
+                    status:false,
+                    message:JSON.stringify(error)
+                })
+            }else {
+                resolve({
+                    status:true,
+                    result:result
+                })
+            }
+        })
+    })
+};
