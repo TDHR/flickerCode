@@ -250,7 +250,7 @@ exports.drawingAsset = async function (ctx) {
     let openid = ctx.request.body.openid;
     let nickname = ctx.request.body.nickname;
     if(asset!=='INU'){
-        ctx.body = {
+        return ctx.body = {
             status:false,
             result:'当前仅支持INU提取'
         }
@@ -258,7 +258,7 @@ exports.drawingAsset = async function (ctx) {
     //提取时间限制
     let allowDrawingTime = await queryLastDrawingTime(openid);
     if(allowDrawingTime === 0) {
-         ctx.body = {
+         return ctx.body = {
             success:false,
             result:'五分钟内仅允许提取一次'
         }
@@ -266,7 +266,7 @@ exports.drawingAsset = async function (ctx) {
     //查询账号状态
     let accountStatus = await queryAccountStatus(openid);
     if(accountStatus === 1) {
-        ctx.body = {
+        return ctx.body = {
             success:false,
             result:'当前账号状态异常，请联系管理员'
         }
@@ -274,12 +274,12 @@ exports.drawingAsset = async function (ctx) {
 
     let result = await sendDrawingRequest(address,asset,number,openid,nickname);
     if(result.status){
-        ctx.body = {
+        return ctx.body = {
             success:true,
             result:result.message.txId
         }
     }else {
-        ctx.body = {
+        return ctx.body = {
             success:false,
             result:result.message
         }
@@ -310,10 +310,7 @@ const sendDrawingRequest = async function (address,asset,number,openid,nickname)
                 if(error){
                     saveDrawingErrorMessage(openid, nickname,asset, number,error.status,address);
                     console.log(JSON.stringify(error));
-                    let errorTime = new Date().getTime();
-                    setTimeout(function () {
-                        chargeFrozenAccount(openid,address,errorTime)
-                    },180000);
+
 
                     resolve({
                         status:false,
@@ -323,6 +320,12 @@ const sendDrawingRequest = async function (address,asset,number,openid,nickname)
 
                     if(result.body.success){
                         saveDrawingResultMessage(openid, nickname, address, asset, number);
+
+                        let errorTime = new Date().getTime();
+                        setTimeout(function () {
+                            chargeFrozenAccount(openid,address,errorTime)
+                        },20000);
+
                         resolve({
                             status:true,
                             message:result
