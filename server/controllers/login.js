@@ -392,7 +392,7 @@ const saveDrawingResultMessage = async function (openid, nickname, address, asse
 };
 //查询账号状态
 const queryAccountStatus = async function (openid) {
-  let querySql = `select status from wechat_user where user = '${openid}'` ;
+  let querySql = `select status from wechat_user where openid = '${openid}'` ;
   return new Promise((resolve,reject) => {
       p.query(querySql,function (error, result) {
           if(error){
