@@ -58,7 +58,7 @@ $('#drawingBtn').click(function () {
 //         },
 //         error:function (error) {
 //             console.log(JSON.stringify(error));
-//             alert('发送失败，请联系管理员')
+//             alert('提取失败，请联系管理员')
 //         },
 //         success:function (res) {
 //             console.log(JSON.stringify(res))
