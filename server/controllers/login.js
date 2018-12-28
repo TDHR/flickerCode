@@ -258,7 +258,7 @@ exports.drawingAsset = async function (ctx) {
     //提取时间限制
     let allowDrawingTime = await queryLastDrawingTime(openid);
     if(allowDrawingTime === 0) {
-        return ctx.body = {
+         ctx.body = {
             success:false,
             result:'五分钟内仅允许提取一次'
         }
@@ -266,12 +266,12 @@ exports.drawingAsset = async function (ctx) {
     //查询账号状态
     let accountStatus = await queryAccountStatus(openid);
     if(accountStatus === 1) {
-       return ctx.body = {
+        ctx.body = {
             success:false,
             result:'当前账号状态异常，请联系管理员'
         }
     }
-    console.log(typeof accountStatus);
+
     let result = await sendDrawingRequest(address,asset,number,openid,nickname);
     if(result.status){
         ctx.body = {
