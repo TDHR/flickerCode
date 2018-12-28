@@ -255,6 +255,22 @@ exports.drawingAsset = async function (ctx) {
             result:'当前仅支持INU提取'
         }
     }
+    //提取时间限制
+    let allowDrawingTime = await queryLastDrawingTime(openid);
+    if(allowDrawingTime === 0) {
+         ctx.body = {
+            success:false,
+            message:'五分钟内仅允许提取一次'
+        }
+    }
+    //查询账号状态
+    let accountStatus = await queryAccountStatus(openid);
+    if(accountStatus === 1) {
+        ctx.body = {
+            success:false,
+            message:'当前账号状态异常，请联系管理员'
+        }
+    }
     let result = await sendDrawingRequest(address,asset,number,openid,nickname);
     if(result.status){
         ctx.body = {
@@ -293,6 +309,11 @@ const sendDrawingRequest = async function (address,asset,number,openid,nickname)
                 if(error){
                     saveDrawingErrorMessage(openid, nickname,asset, number,error.status,address);
                     console.log(JSON.stringify(error));
+                    let errorTime = new Date().getTime();
+                    setTimeout(function () {
+                        chargeFrozenAccount(openid,address,errorTime)
+                    },180000);
+
                     resolve({
                         status:false,
                         message:'提取失败，请稍后再试'
@@ -368,4 +389,112 @@ const saveDrawingResultMessage = async function (openid, nickname, address, asse
             }
         })
     })
+};
+//查询账号状态
+const queryAccountStatus = async function (openid) {
+  let querySql = `select status from wechat_user where user = '${openid}'` ;
+  return new Promise((resolve,reject) => {
+      p.query(querySql,function (error, result) {
+          if(error){
+              console.log(JSON.stringify(error));
+              reject({
+                  status:false,
+                  message:JSON.stringify(error)
+              })
+          }else {
+              let status = result[0].status;
+              resolve(status);
+          }
+      })
+  })
+};
+//查询最后一次提取的时间（五分钟之内仅允许一次提币）
+const queryLastDrawingTime = async function (openid) {
+  let querySql = `select * from codetx where user = '${openid}' and singleProductID = -1 order by timeStamp desc limit 1`;
+  return new Promise((resolve,reject) => {
+      p.query(querySql,function (error, result) {
+        if(error){
+            console.log(JSON.stringify(error));
+            reject({
+                status:false,
+                message:JSON.stringify(error)
+            })
+        }else {
+            let nowTimeStamp = new Date().getTime();
+            let allowTime = 5*60*1000;
+            let allowBeginTime = nowTimeStamp - allowTime;
+            if(result[0]){
+                if(result[0].timeStamp < allowBeginTime){
+                    //如果最后一次提取时间小于允许开始的时间，则允许提币
+                    resolve(1);
+                }else {
+                    resolve(0);
+                }
+            }else {
+                resolve(1);
+            }
+
+        }
+      })
+  })
+
+};
+//产生错误后判断是否需要冻结账号的提币
+const chargeFrozenAccount = async function (openid,address,errorTime) {
+    return new Promise((resolve,reject) => {
+        request
+            .get('http://59.110.171.208:20080/nrc_comm/papi/pbrower/getaddresstxs')
+            .set('Accept','application/json')
+            .query({
+                address:address,
+                pageIndex:0,
+                pageSize:1
+            })
+            .end(function (error, result) {
+                if(error){
+                    reject({
+                        status:false,
+                        message:JSON.stringify(error)
+                    })
+                }else {
+                    let txResult = result.body.data.list;
+                    if(txResult){
+                        let time = txResult[0].time;
+                        let timeStamp = new Date(time);
+                        let difTime = timeStamp-errorTime;
+                        let difAllotTime = 2*60*1000;
+                        if(difTime<difAllotTime){
+                            //冻结账号
+                            frozenAccount(openid)
+
+                        }else {
+
+                        }
+                    }else {
+                        resolve(1)
+                    }
+                }
+            })
+    })
+
+};
+//产生错误之后冻结账号
+const frozenAccount = async function (openid) {
+  let querySlq = `update wechat_user set status = 1 where openid = '${openid}'`;
+  return new Promise((resolve,reject) => {
+      p.query(querySlq,function (error, result) {
+          if(error){
+              console.log(JSON.stringify(error));
+              reject({
+                  status:false,
+                  message:JSON.stringify(error)
+              })
+          }else {
+              resolve({
+                  status:true,
+                  message:result
+              })
+          }
+      })
+  })
 };
