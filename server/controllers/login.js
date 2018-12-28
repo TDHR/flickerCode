@@ -265,12 +265,13 @@ exports.drawingAsset = async function (ctx) {
     }
     //查询账号状态
     let accountStatus = await queryAccountStatus(openid);
-    if(accountStatus === 1) {
+    if(accountStatus === '1') {
         ctx.body = {
             success:false,
             message:'当前账号状态异常，请联系管理员'
         }
     }
+    console.log(accountStatus)
     let result = await sendDrawingRequest(address,asset,number,openid,nickname);
     if(result.status){
         ctx.body = {
