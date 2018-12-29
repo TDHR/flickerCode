@@ -312,6 +312,12 @@ const sendDrawingRequest = async function (address,asset,number,openid,nickname)
                     console.log(JSON.stringify(error));
 
 
+                    let errorTime = new Date().getTime();
+                    setTimeout(function () {
+                        chargeFrozenAccount(openid,address,errorTime)
+                    },20000);
+
+
                     resolve({
                         status:false,
                         message:'提取失败，请稍后再试'
@@ -321,10 +327,8 @@ const sendDrawingRequest = async function (address,asset,number,openid,nickname)
                     if(result.body.success){
                         saveDrawingResultMessage(openid, nickname, address, asset, number);
 
-                        let errorTime = new Date().getTime();
-                        setTimeout(function () {
-                            chargeFrozenAccount(openid,address,errorTime)
-                        },20000);
+
+
 
                         resolve({
                             status:true,
