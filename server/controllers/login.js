@@ -147,7 +147,7 @@ exports.drawingTest = async function (ctx) {
     if(!user){
        await ctx.render('login/drawingTest',{
             status:false,
-            loginMessage:'当前用户未登录，点击登录'
+            loginMessage:'当前用户未登录，请返回登录'
         })
     }else {
        let userMessage = await  queryOpenid(user);//查询openid
