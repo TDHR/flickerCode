@@ -168,30 +168,33 @@ exports.drawingTest = async function (ctx) {
 exports.drawing = async function (ctx) {
 
     //页面维护
-    await ctx.render('login/developing',{
+    // await ctx.render('login/developing',{
+    //
+    // });
 
-    });
 
+  let user = ctx.session.user;
 
-  // let user = ctx.session.user;
-  //
-  // if(!user){
-  //    await ctx.render('login/drawing',{
-  //         status:false,
-  //         loginMessage:'当前用户未登录，点击登录'
-  //     })
-  // }else {
-  //    let userMessage = await  queryOpenid(user);//查询openid
-  //     let result = await  queryUserAsset(userMessage.result.openid);//根据openid查询用户资产
-  //     // console.log(result.result)
-  //    await ctx.render('login/drawing',{
-  //         status:true,
-  //         loginMessage:'登录成功',
-  //         user:user,
-  //         asset:result.result,
-  //        userMessage:userMessage.result
-  //     })
-  // }
+  if(!user){
+     await ctx.render('login/drawing',{
+          status:false,
+          loginMessage:'登录已过期，点击登录'
+      })
+  }else {
+     let userMessage = await  queryOpenid(user);//查询openid
+      let result = await  queryUserAsset(userMessage.result.openid);//根据openid查询用户资产
+      //查询当日可提取个数
+        let surplus = await queryAvailable(userMessage.result.openid);
+      // console.log(result.result)
+     await ctx.render('login/drawing',{
+          status:true,
+          loginMessage:'登录成功',
+          user:user,
+          asset:result.result,
+         userMessage:userMessage.result,
+         surplus:surplus
+      })
+  }
 };
 // 查询openid
 const queryOpenid = async function (user) {
@@ -212,6 +215,24 @@ const queryOpenid = async function (user) {
           }
       })
   })
+};
+//查询当前用户当日还可提取的INU个数
+const queryAvailable = async function (openid) {
+    let addressQuota = '188aVD1vQgitnu1nUjpdwPbk2jPdXwTQaS';
+    let userQuota = await queryUserQuota(addressQuota,openid);
+    let quotaCount = userQuota.result.countNumber * 150;
+    //获取当前用户今日的提币数量
+    let todayCountMessage = await vertifyCount(openid);
+    let todayCount;
+    if(!todayCountMessage.result.todayCount){
+        todayCount = 0;
+    }else {
+        todayCount = Math.abs(todayCountMessage.result.todayCount);
+    }
+    let surplus = quotaCount - todayCount;
+    return new Promise((resolve,reject) => {
+        resolve(surplus);
+    })
 };
 //查询当前用户的资产
 const queryUserAsset = async function (openid) {
@@ -244,11 +265,41 @@ const queryUserAsset = async function (openid) {
 };
 //提取方法
 exports.drawingAsset = async function (ctx) {
-    let address = ctx.request.body.address;
-    let asset = ctx.request.body.asset;
-    let number = ctx.request.body.number;
-    let openid = ctx.request.body.openid;
-    let nickname = ctx.request.body.nickname;
+    let address = xss(ctx.request.body.address);
+    let asset =xss(ctx.request.body.asset) ;
+    let number = xss(ctx.request.body.number);
+    let openid = xss(ctx.request.body.openid);
+    let nickname = xss(ctx.request.body.nickname);
+
+    //验证地址的正确性
+    let addressIsTrue = await vertifyAddress(address);
+    if(!addressIsTrue.status){
+        return ctx.body = {
+            status:false,
+            result:addressIsTrue.result
+        }
+    }
+
+
+    let loginInfo = ctx.session.user;
+    if(!loginInfo){
+        return ctx.body = {
+            status:false,
+            result:'登录时间已过期，请重新登录'
+        }
+    }
+    let userMessage = await  queryOpenid(loginInfo);//查询openid
+    let userOpenId = userMessage.result.openid;//
+    if(userOpenId !== openid){
+
+        frozenAccount(openid);
+        frozenAccount(userOpenId);
+
+        return ctx.body = {
+            status:false,
+            result:'当前操作异常，已禁封您的账号'
+        }
+    }
     if(asset!=='INU'){
         return ctx.body = {
             status:false,
@@ -271,6 +322,25 @@ exports.drawingAsset = async function (ctx) {
             result:'当前账号状态异常，请联系管理员'
         }
     }
+    //提取数量限制
+    let addressQuota = '188aVD1vQgitnu1nUjpdwPbk2jPdXwTQaS';
+    let userQuota = await queryUserQuota(addressQuota,openid);
+    let quotaCount = userQuota.result.countNumber * 150;
+    //获取当前用户今日的提币数量
+    let todayCountMessage = await vertifyCount(openid);
+    let todayCount;
+    if(!todayCountMessage.result.todayCount){
+        todayCount = 0;
+    }else {
+        todayCount = Math.abs(todayCountMessage.result.todayCount);
+    }
+    if(todayCount+number > quotaCount){
+        return ctx.body = {
+            success:false,
+            result:'当前提取数量超出限制'
+        }
+    }
+    //
 
     let result = await sendDrawingRequest(address,asset,number,openid,nickname);
     if(result.status){
@@ -286,6 +356,34 @@ exports.drawingAsset = async function (ctx) {
     }
 
 };
+//验证地址正确性
+const vertifyAddress = async function (address) {
+    return new Promise((resolve,reject) => {
+        request
+            .get('http://59.110.171.208:20080/nrc_center/fapi/FNrcChain/verifyAddress')
+            .set('Accept', 'application/json')
+            .set('Content-type','application/json')
+            .query({
+                address:address
+            })
+            .end(function (error, result) {
+                if(error){
+                    JSON.stringify(error)
+                    reject({
+                        status:false,
+                        message:JSON.stringify(error)
+                    })
+                }else {
+                    let resultMessage = result.text;
+                    resultMessage = JSON.parse(resultMessage);
+                    resolve({
+                        status:resultMessage.success,
+                        result:resultMessage.message
+                    })
+                }
+            })
+    })
+}
 //发送提取请求
 const sendDrawingRequest = async function (address,asset,number,openid,nickname) {
 
@@ -471,7 +569,7 @@ const chargeFrozenAccount = async function (openid,address,errorTime) {
                         let timeStamp = new Date(time);
                         let difTime = timeStamp-errorTime;
                         let difAllotTime = 2*60*1000;
-                        if(difTime<difAllotTime){
+                        if(difTime<difAllotTime && difTime >0){
                             //冻结账号
                             frozenAccount(openid)
 
@@ -505,4 +603,51 @@ const frozenAccount = async function (openid) {
           }
       })
   })
+};
+//查询当前用户的提取限额
+const queryUserQuota = async function (address,openid) {
+    let querySql = `select count(token_number) as countNumber from codetx where user = '${openid}' 
+and productAddress = '${address}' and LENGTH(singleProductID) >5`;
+    return new Promise((resolve,reject) => {
+        p.query(querySql,function (error, result) {
+            if(error){
+                console.log(JSON.stringify(error));
+                reject({
+                    status:false,
+                    message:JSON.stringify(error)
+                })
+            }else {
+                resolve({
+                    status:true,
+                    result:result[0]
+                })
+            }
+        })
+    })
+
+};
+//验证提取金额
+const vertifyCount = async function (openid) {
+    let date = new Date();
+    let  todayStart = new Date(`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} 00:00:00`).getTime();
+    let  todayEnd = new Date(`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} 23:59:59`).getTime();
+    let querySql = `select sum(token_number) as todayCount 
+    from codetx where singleProductID = -1 and user ='${openid}' and TIMESTAMP BETWEEN ${todayStart} and ${todayEnd}`;
+    return new Promise((resolve,reject) => {
+        p.query(querySql,function (error, result) {
+            if(error){
+                console.log(JSON.stringify(error));
+                reject({
+                    status:false,
+                    message:JSON.stringify(error)
+                })
+            }else {
+                resolve({
+                    status:true,
+                    result:result[0]
+                })
+            }
+        })
+    })
+
 };

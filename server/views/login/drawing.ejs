@@ -111,7 +111,7 @@
             <%= userMessage.openid %>
         </div>
     <% } else { %>
-        <%= loginMessage %>
+            <a href="/login/login"><%= loginMessage %></a>
     <% } %>
 </div>
 <%if(status){%>
@@ -180,6 +180,10 @@
                         <button id="drawingBtn"  class="btn btn-info signin-btn">确认提取</button>
                     </div>
 
+                </div>
+                <div class="row">
+                    <div style="width: 100%;text-align: center;font-weight: bold">当前每日提取限额为：常青藤份数*150</div>
+                    <div style="width: 100%;text-align: center;font-weight: bold">当前可用余额为：<%=surplus%></div>
                 </div>
                 <!--<div class="row">-->
                 <!--<div class="col-md-2 col-sm-2 col-xs-2"></div>-->
