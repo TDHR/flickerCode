@@ -334,6 +334,8 @@ exports.drawingAsset = async function (ctx) {
     }else {
         todayCount = Math.abs(todayCountMessage.result.todayCount);
     }
+    todayCount = parseInt(todayCount);
+    number = parseInt(number);
     if(todayCount+number > quotaCount){
         return ctx.body = {
             success:false,
