@@ -270,7 +270,16 @@ exports.drawingAsset = async function (ctx) {
     let number = xss(ctx.request.body.number);
     let openid = xss(ctx.request.body.openid);
     let nickname = xss(ctx.request.body.nickname);
-
+    let now = new Date().getTime();
+    let date = new Date();
+    let  banStart = new Date(`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} 13:50:00`).getTime();
+    let  banEnd = new Date(`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} 14:10:00`).getTime();
+    if(now >= banStart && now <= banEnd){
+        return ctx.body = {
+            status:false,
+            result:'每天13：50--14：10禁止提取'
+        }
+    }
     //验证地址的正确性
     let addressIsTrue = await vertifyAddress(address);
     if(!addressIsTrue.status){
