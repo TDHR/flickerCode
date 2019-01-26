@@ -142,25 +142,25 @@ exports.login = async (ctx) => {
 };
 //提取的测试页面
 exports.drawingTest = async function (ctx) {
-    let user = ctx.session.user;
-
-    if(!user){
-       await ctx.render('login/drawingTest',{
-            status:false,
-            loginMessage:'当前用户未登录，请返回登录'
-        })
-    }else {
-       let userMessage = await  queryOpenid(user);//查询openid
-        let result = await  queryUserAsset(userMessage.result.openid);//根据openid查询用户资产
-        // console.log(result.result)
-       await ctx.render('login/drawingTest',{
-            status:true,
-            loginMessage:'登录成功',
-            user:user,
-            asset:result.result,
-           userMessage:userMessage.result
-        })
-    }
+    // let user = ctx.session.user;
+    //
+    // if(!user){
+    //    await ctx.render('login/drawingTest',{
+    //         status:false,
+    //         loginMessage:'当前用户未登录，请返回登录'
+    //     })
+    // }else {
+    //    let userMessage = await  queryOpenid(user);//查询openid
+    //     let result = await  queryUserAsset(userMessage.result.openid);//根据openid查询用户资产
+    //     // console.log(result.result)
+    //    await ctx.render('login/drawingTest',{
+    //         status:true,
+    //         loginMessage:'登录成功',
+    //         user:user,
+    //         asset:result.result,
+    //        userMessage:userMessage.result
+    //     })
+    // }
 };
 
 
@@ -168,33 +168,33 @@ exports.drawingTest = async function (ctx) {
 exports.drawing = async function (ctx) {
 
     //页面维护
-    // await ctx.render('login/developing',{
-    //
-    // });
+    await ctx.render('login/developing',{
+
+    });
 
 
-  let user = ctx.session.user;
-
-  if(!user){
-     await ctx.render('login/drawing',{
-          status:false,
-          loginMessage:'登录已过期，点击登录'
-      })
-  }else {
-     let userMessage = await  queryOpenid(user);//查询openid
-      let result = await  queryUserAsset(userMessage.result.openid);//根据openid查询用户资产
-      //查询当日可提取个数
-        let surplus = await queryAvailable(userMessage.result.openid);
-      // console.log(result.result)
-     await ctx.render('login/drawing',{
-          status:true,
-          loginMessage:'登录成功',
-          user:user,
-          asset:result.result,
-         userMessage:userMessage.result,
-         surplus:surplus
-      })
-  }
+  // let user = ctx.session.user;
+  //
+  // if(!user){
+  //    await ctx.render('login/drawing',{
+  //         status:false,
+  //         loginMessage:'登录已过期，点击登录'
+  //     })
+  // }else {
+  //    let userMessage = await  queryOpenid(user);//查询openid
+  //     let result = await  queryUserAsset(userMessage.result.openid);//根据openid查询用户资产
+  //     //查询当日可提取个数
+  //       let surplus = await queryAvailable(userMessage.result.openid);
+  //     // console.log(result.result)
+  //    await ctx.render('login/drawing',{
+  //         status:true,
+  //         loginMessage:'登录成功',
+  //         user:user,
+  //         asset:result.result,
+  //        userMessage:userMessage.result,
+  //        surplus:surplus
+  //     })
+  // }
 };
 // 查询openid
 const queryOpenid = async function (user) {
