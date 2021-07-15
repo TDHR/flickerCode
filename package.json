@@ -9,7 +9,7 @@
   "author": "TDHR",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.0",
+    "bcrypt": "^5.0.0",
     "child_process": "^1.0.2",
     "co": "^4.6.0",
     "co-mysql": "^1.0.0",
